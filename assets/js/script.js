@@ -72,5 +72,5 @@ fetch("https://twitter32.p.rapidapi.com/" + endPoint, {
         return response.json();
     })
     .then(data => {
-        console.log(data);
+        console.log(data.data.tweets);
     })
