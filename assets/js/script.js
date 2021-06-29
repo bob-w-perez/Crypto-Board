@@ -122,6 +122,10 @@ $('input.autocomplete').autocomplete({
 });
 });
 
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+
 // ------- Twitter Feed Fetch -------- //
 // ENDPOINT DATE DATA OBJECT
 var endPointDateData = {
@@ -137,6 +141,7 @@ var endPointDateData = {
     }
 }
 
+// ENDPOINT DATA OBJECT
 var endPointData = {
     endpointParts: {
         hashtag: 'doge',
@@ -150,7 +155,7 @@ console.log(endPointData.endPoint);
 
 // FETCHER
 function twitterfetch() {
-    fetch("https://twitter32.p.rapidapi.com" + endPoint, {
+    fetch("https://twitter32.p.rapidapi.com" + endPointData.endPoint, {
     method: "GET",
     "headers": {
         "x-rapidapi-key": "9ce9da8239mshfdc240a5706e6dbp1a372ajsnf408cd27ddc9",
@@ -185,8 +190,4 @@ function getDates() {
 }
 
 //Add Event listener for twitterFetch function
-      
-$(document).ready(function(){
-    $('.collapsible').collapsible();
-  });
 
