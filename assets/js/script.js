@@ -65,7 +65,8 @@ var endDate = '2021-06-30';
 
 var endPoint = "/getSearch?" + "hashtag=" + hashtag + "&start_date=" + startDate + "&end_date=" + endDate;
 
-fetch("https://twitter32.p.rapidapi.com" + endPoint, {
+function twitterfetch() {
+    fetch("https://twitter32.p.rapidapi.com" + endPoint, {
     method: "GET",
     "headers": {
         "x-rapidapi-key": "9ce9da8239mshfdc240a5706e6dbp1a372ajsnf408cd27ddc9",
@@ -79,3 +80,6 @@ fetch("https://twitter32.p.rapidapi.com" + endPoint, {
     .then(data => {
         console.log(data.data.tweets);
     })
+}
+
+//Add Event listener for twitterFetch function
