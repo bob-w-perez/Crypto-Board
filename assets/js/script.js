@@ -157,8 +157,13 @@ var tomorrowString = String(tomorrow); // Saves tomorrow object parsed as a stri
 var todaySplit = todayString.split(" "); // Saves split today string in an array
 var tomorrowSplit = tomorrowString.split(" "); // Saves split tomorrow string in an array
 
+var todaySlice = todaySplit.slice(1, 4); // Saves month day and year in that order for today
+var tomorrowSlice = tomorrowSplit.slice(1, 4); // Saves month day and year in that order for tomorrow
+
 console.log(todaySplit);
 console.log(tomorrowSplit);
+
+console.log(todaySlice);
 //Add Event listener for twitterFetch function
       
 $(document).ready(function(){
