@@ -1,3 +1,5 @@
+var queryEl = document.getElementById('autocomplete-input');
+
 
 const paprikaCoinList = [];
 const coinGeckoList = [];
@@ -28,6 +30,7 @@ function getCoinList() {
     })
 }
 
+
 // would be good to have the alphabetized
 function makeTermGlossary() {
     fetch('https://api.coinpaprika.com/v1/tags').then(function(response) {
@@ -54,6 +57,84 @@ function makeTermGlossary() {
         });
     })
 }
+=======
+queryEl.addEventListener("keypress", function(event){
+    console.log('activated')
+    if(event.key === 'Enter'){
+        
+        var query = queryEl.value.toLowerCase();
+        console.log(query);
+        var apiUrl = 'https://api.coinpaprika.com/v1/tickers';
+
+        fetch(apiUrl).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            const coins = data;
+            var coin = {
+                name: 'placeholder',
+                symbol: 'placeholder',
+                price: 'placeholder',
+                mktcap: 'placeholder',
+                ath: 'placeholder',
+                volume: 'placeholder',
+                rank: 'placeholder',
+                supply: 'placeholder'
+            }
+
+            for(i=0; i<coins.length; i++){
+                if(coins[i].name.toLowerCase() === query || coins[i].symbol.toLowerCase() === query){
+                    coin.name = coins[i].name;
+                    coin.symbol = coins[i].symbol;
+                    coin.price = coins[i].quotes.USD.price;
+                    coin.mktcap = coins[i].quotes.USD.market_cap;
+                    coin.ath = coins[i].quotes.USD.ath_price;
+                    coin.volume = coins[i].quotes.USD.volume_24h;
+                    coin.rank = coins[i].rank;
+                    coin.supply = coins[i].circulating_supply;
+                    
+                    console.log('activated base')
+                    break;
+                }
+            }
+            // return coin;
+            console.log(coin); 
+        })
+    }
+    
+
+
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
