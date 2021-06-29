@@ -14,6 +14,7 @@ function init() {
 
 init();
 
+// look into adding symbol link instead of 'null'
 function getCoinList() {
     fetch('https://api.coinpaprika.com/v1/coins').then(function(response) {
         return response.json();
@@ -21,6 +22,7 @@ function getCoinList() {
         console.log(info);
         info.forEach(coin => {
             data[coin.name] = null;
+            data[coin.symbol] = null
         });
 
     })
