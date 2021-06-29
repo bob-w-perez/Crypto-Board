@@ -11,25 +11,53 @@ var data = { };
 
 function init() {
     getCoinList();
-
+    makeTermGlossary();
 }
 
 init();
 
 // look into adding symbol link instead of 'null'
 function getCoinList() {
-    fetch('https://api.coinpaprika.com/v1/coins').then(function(response) {
+    fetch('https://api.coinpaprika.com/v1/tickers').then(function(response) {
         return response.json();
     }).then(function(info) {
         // console.log(info);
         info.forEach(coin => {
             data[coin.name] = null;
-            data[coin.symbol] = null
+            data[coin.symbol] = null;
         });
 
     })
 }
 
+
+// would be good to have the alphabetized
+function makeTermGlossary() {
+    fetch('https://api.coinpaprika.com/v1/tags').then(function(response) {
+        return response.json();
+    }).then(function(info) {
+        console.log(info);
+        info.forEach(term => {
+            let termItem = document.createElement('li');
+            let itemHeadCollapse = document.createElement('div');
+            let itemBodyCollapse = document.createElement('div');
+            // let itemBodyCollapseSpan = document.createElement('span');
+
+            itemHeadCollapse.textContent = term.name;
+            termItem.classList.add('collapsible-header');
+            termItem.append(itemHeadCollapse);
+
+            itemBodyCollapse.classList.add('collapsible-body');
+
+            itemBodyCollapse.textContent = term.description;
+            // itemBodyCollapse.append(itemBodyCollapseSpan);
+            termItem.append(itemBodyCollapse);
+
+            $('#term-glossary').append(termItem);
+        });
+    })
+}
+=======
 queryEl.addEventListener("keypress", function(event){
     console.log('activated')
     if(event.key === 'Enter'){
@@ -111,6 +139,7 @@ queryEl.addEventListener("keypress", function(event){
 
 
 
+
 // ------- jQuery initializations for Materialize components ---------- //
 
 // M.AutoInit();
@@ -119,21 +148,17 @@ $(document).ready(function(){
     $('.sidenav').sidenav({
         menuWidth: 300,
         closeOnClick: true,
-        edge: 'right',
+        // edge: 'right',
     });
   });
 
-
-//   var data = {
-//     "Apple": 'APL',
-//     "Microsoft": null,
-//     "Google": 'https://placehold.it/250x250'
-//   }
 
 $(document).ready(function(){
 $('input.autocomplete').autocomplete({
    data,
 });
 });
-       
-
+      
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
