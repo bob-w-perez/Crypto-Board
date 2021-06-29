@@ -57,7 +57,7 @@ function makeTermGlossary() {
         });
     })
 }
-=======
+
 queryEl.addEventListener("keypress", function(event){
     console.log('activated')
     if(event.key === 'Enter'){
@@ -158,7 +158,37 @@ $('input.autocomplete').autocomplete({
    data,
 });
 });
+
+       
+// ------- Twitter Feed Fetch -------- //
+var hashtag = 'doge';
+var startDate = '2021-06-29';
+var endDate = '2021-06-30';
+
+
+var endPoint = "/getSearch?" + "hashtag=" + hashtag + "&start_date=" + startDate + "&end_date=" + endDate;
+
+function twitterfetch() {
+    fetch("https://twitter32.p.rapidapi.com" + endPoint, {
+    method: "GET",
+    "headers": {
+        "x-rapidapi-key": "9ce9da8239mshfdc240a5706e6dbp1a372ajsnf408cd27ddc9",
+		"x-rapidapi-host": "twitter32.p.rapidapi.com"
+    }
+})
+    .then(response => {
+        console.log(response);
+        return response.json();
+    })
+    .then(data => {
+        console.log(data.data.tweets);
+    })
+}
+
+//Add Event listener for twitterFetch function
+=======
       
 $(document).ready(function(){
     $('.collapsible').collapsible();
   });
+
