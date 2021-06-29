@@ -62,6 +62,7 @@ function makeTermGlossary() {
     })
 }
 
+
 function genCoinCard(coin){
     var coinsArea = document.getElementById('card-space');
 
@@ -86,6 +87,7 @@ function genCoinCard(coin){
 
 
 }
+
 
 
 queryEl.addEventListener("keypress", function(event){
