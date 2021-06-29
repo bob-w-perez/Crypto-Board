@@ -57,4 +57,5 @@ $('input.autocomplete').autocomplete({
 });
 });
        
-
+// ------- Twitter Feed Fetch -------- //
+fetch("https://twitter32.p.rapidapi.com/)
