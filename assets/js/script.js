@@ -123,22 +123,22 @@ function getChartData(coinName) {
         };
 
     })
-    return [price, day];
+    return [price, day, coinName];
     
 }
 
-var chartData = getChartData('bitcoin');
+var chartData = getChartData('ethereum');
 console.log(chartData)
-setTimeout(function(){makeChart(chartData[0], chartData[1])},1000)
+setTimeout(function(){makeChart(chartData[0], chartData[1], chartData[2])},2000)
 
-function makeChart(price, day){
+function makeChart(price, day, coinName){
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: day,
             datasets: [{
-                label: 'Popular JavaScript Frameworks',
+                label: coinName + ' price (last 30 days)',
                 data: price
                 }]
         },
