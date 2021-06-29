@@ -57,7 +57,8 @@ function makeTermGlossary() {
         });
     })
 }
-=======
+
+
 queryEl.addEventListener("keypress", function(event){
     console.log('activated')
     if(event.key === 'Enter'){
