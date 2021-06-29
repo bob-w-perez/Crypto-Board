@@ -36,7 +36,7 @@ function makeTermGlossary() {
     fetch('https://api.coinpaprika.com/v1/tags').then(function(response) {
         return response.json();
     }).then(function(info) {
-        console.log(info);
+        // console.log(info);
         info.forEach(term => {
             let termItem = document.createElement('li');
             let itemHeadCollapse = document.createElement('div');
@@ -108,40 +108,62 @@ queryEl.addEventListener("keypress", function(event){
 
 })
 // ------- chart sections ----------- //
-var stars = [135850, 52122, 148825, 16939, 9763];
-var frameworks = ['React', 'Angular', 'Vue', 'Hyperapp', 'Omi'];
-var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: frameworks,
-        datasets: [{
-            label: 'Popular JavaScript Frameworks',
-            data: stars
-            }]
-    },
-    options: {
-        maintainAspectRatio: false,
-        responsive: false,
-        scales: {
-            x: {
-                ticks: {
-                    display: false
-                }
-            },
-            y: {
-                ticks: {
-                    // Include a dollar sign in the ticks
-                    callback: function(value, index, values) {
-                        return '$' + value;
+function getChartData(coinName) {
+
+    var price = [];
+    var day = [];
+
+    fetch('https://api.coingecko.com/api/v3/coins/'+ coinName + '/market_chart?vs_currency=usd&days=30&interval=daily').then(function(response) {
+        return response.json();
+    }).then(function(info) {
+        console.log(info);
+        for (i = 0; i < info.prices.length; i++){
+            day.push(info.prices[i][0]);
+            price.push(info.prices[i][1]);
+        };
+
+    })
+    return [price, day];
+    
+}
+
+var chartData = getChartData('bitcoin');
+console.log(chartData)
+setTimeout(function(){makeChart(chartData[0], chartData[1])},1000)
+
+function makeChart(price, day){
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: day,
+            datasets: [{
+                label: 'Popular JavaScript Frameworks',
+                data: price
+                }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: false,
+            scales: {
+                x: {
+                    ticks: {
+                        display: false
+                    }
+                },
+                y: {
+                    ticks: {
+                        // Include a dollar sign in the ticks
+                        callback: function(value, index, values) {
+                            return '$' + value;
+                        }
                     }
                 }
-            }
-        }    
-        
+            }       
+        }
     }
- }
-)
+    )
+}
 
 // ------- jQuery initializations for Materialize components ---------- //
 
