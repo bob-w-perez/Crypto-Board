@@ -58,4 +58,10 @@ $('input.autocomplete').autocomplete({
 });
        
 // ------- Twitter Feed Fetch -------- //
-fetch("https://twitter32.p.rapidapi.com/)
+fetch("https://twitter32.p.rapidapi.com/", {
+    method: "GET",
+    "headers": {
+        "x-rapidapi-key": "9ce9da8239mshfdc240a5706e6dbp1a372ajsnf408cd27ddc9",
+		"x-rapidapi-host": "twitter32.p.rapidapi.com"
+    }
+})
