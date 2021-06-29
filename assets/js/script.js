@@ -58,9 +58,14 @@ $('input.autocomplete').autocomplete({
 });
        
 // ------- Twitter Feed Fetch -------- //
-var endPoint = "getSearch?hashtag=doge";
+var hashtag = 'doge';
+var startDate = '2021-06-29';
+var endDate = '2021-06-30';
 
-fetch("https://twitter32.p.rapidapi.com/" + endPoint, {
+
+var endPoint = "/getSearch?" + "hashtag=" + hashtag + "&start_date=" + startDate + "&end_date=" + endDate;
+
+fetch("https://twitter32.p.rapidapi.com" + endPoint, {
     method: "GET",
     "headers": {
         "x-rapidapi-key": "9ce9da8239mshfdc240a5706e6dbp1a372ajsnf408cd27ddc9",
