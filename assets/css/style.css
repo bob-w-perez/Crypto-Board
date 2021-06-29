@@ -1,0 +1,39 @@
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+    margin: 0;
+}
+
+
+#main-row {
+    margin-bottom: 0;
+}
+
+#main-title {
+    margin: 2em;
+}
+
+#tweet-bar {
+    height: 100vh;
+}
+
+#card-space {
+    height: 100vh;
+}
+
+#copyright-bar{
+    display: flex;
+    padding: 0 20px;
+    width: 100vw;
+    justify-content: space-between;
+}
+
+/*---------------------------------------------------*/
+
+/*NOTE: commented out .sidenav-trigger display in LINE 4314 of materialize.css*/

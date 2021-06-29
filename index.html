@@ -3,19 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./assets/css/materialize.css"  media="screen,projection"/>  
     <link rel="stylesheet" href="./assets/css/style.css"/>  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- ADD title -->
     <title>Document</title>
-    <!-- ADD favicon-->
+    <link rel="icon" type="img/png" href="./assets/images/favicon-1.png"/>
 
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="nav-wrapper amber darken-1">
+                <a href="#" class="brand-logo black-text center">Logo</a>
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="sass.html">Sass</a></li>
+                <li><a href="badges.html">Components</a></li>
+                <li><a href="collapsible.html">JavaScript</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <ul id="slide-out" class="sidenav">
+            <li><div class="user-view">
+                <div class="background">
+                <img src="images/office.jpg">
+                </div>
+                <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
+                <a href="#name"><span class="white-text name">John Doe</span></a>
+                <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                </div>
+            </li>
+            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+            <li><a href="#!">Second Link</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Subheader</a></li>
+            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <div class="section grey darken-3 z-depth-1">
+            <div class="container">
+                <h1 id="main-title" class="center">CoinBASED</h1>
+            </div>
+        </div>
+
+        <div class="section no-pad">
+            <div id="main-row" class="row">
+                <div id="tweet-bar" class="col s3 light-blue lighten-2">
+                    <h2>tweets go here</h2>
+                </div>
+                <div id="card-space" class="col s9 purple lighten-4">
+                    <h2>cards go here</h2>
+                </div>
+            </div>  
+        </div>
+    </main>
+
+    <footer class="page-footer amber darken-1">
+        <div class="container">
+            <div class="row">
+                <div class="col s6">
+                    <p>Some stuff</p>
+                </div>
+                <div class="col s4">
+                    <p>more stuff</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright amber darken-3">
+            <div id="copyright-bar" >
+                <p>© 2014 Copyright Text</p>
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
     
-
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="./assets/js/materialize.js"></script>
     <script type="text/javascript" src="./assets/js/script.js"></script>
 </body>
