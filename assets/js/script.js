@@ -58,7 +58,9 @@ $('input.autocomplete').autocomplete({
 });
        
 // ------- Twitter Feed Fetch -------- //
-fetch("https://twitter32.p.rapidapi.com/", {
+var endPoint = "getSearch?hashtag=doge";
+
+fetch("https://twitter32.p.rapidapi.com/" + endPoint, {
     method: "GET",
     "headers": {
         "x-rapidapi-key": "9ce9da8239mshfdc240a5706e6dbp1a372ajsnf408cd27ddc9",
