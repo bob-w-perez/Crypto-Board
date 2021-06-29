@@ -65,3 +65,6 @@ fetch("https://twitter32.p.rapidapi.com/", {
 		"x-rapidapi-host": "twitter32.p.rapidapi.com"
     }
 })
+    .then(response => {
+        console.log(response);
+    })
