@@ -10,6 +10,28 @@ main {
     margin: 0;
 }
 
+/* this isnt working to fit image in sidenav*/
+#term-background {
+    object-fit: cover;
+}
+
+#term-glossary {
+    padding-left: 20px;
+}
+
+#term-glossary li {
+    padding: 20px;
+}
+
+#term-glossary li div {
+    margin: 10px;
+}
+
+#term-glossary li div:first-child {
+    font-weight: bold;
+    font-size: 20px;
+}
+
 
 #main-row {
     margin-bottom: 0;
