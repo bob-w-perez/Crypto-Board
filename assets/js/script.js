@@ -107,38 +107,41 @@ queryEl.addEventListener("keypress", function(event){
 
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ------- chart sections ----------- //
+var stars = [135850, 52122, 148825, 16939, 9763];
+var frameworks = ['React', 'Angular', 'Vue', 'Hyperapp', 'Omi'];
+var ctx = document.getElementById('myChart');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: frameworks,
+        datasets: [{
+            label: 'Popular JavaScript Frameworks',
+            data: stars
+            }]
+    },
+    options: {
+        maintainAspectRatio: false,
+        responsive: false,
+        scales: {
+            x: {
+                ticks: {
+                    display: false
+                }
+            },
+            y: {
+                ticks: {
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, values) {
+                        return '$' + value;
+                    }
+                }
+            }
+        }    
+        
+    }
+ }
+)
 
 // ------- jQuery initializations for Materialize components ---------- //
 
@@ -158,6 +161,10 @@ $('input.autocomplete').autocomplete({
    data,
 });
 });
+
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
 
        
 // ------- Twitter Feed Fetch -------- //
@@ -184,11 +191,8 @@ function twitterfetch() {
         console.log(data.data.tweets);
     })
 }
-
+twitterfetch();
 //Add Event listener for twitterFetch function
 
       
-$(document).ready(function(){
-    $('.collapsible').collapsible();
-  });
 
