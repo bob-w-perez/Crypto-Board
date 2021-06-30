@@ -259,6 +259,7 @@ function makeChart(price, day, coinName, chartId){
                 title: {
                     display: true,
                     text: coinName + ' (past 30 days)',
+                    color: '#FFFFFF',
                     font: {
                         size: 20,
                         weight: 800,
@@ -281,7 +282,8 @@ function makeChart(price, day, coinName, chartId){
                         callback: function(value, index, values) {
                             return '$' + value;
                         },
-                        color: '#FFFFFF'
+                        color: '#FFFFFF',
+                        precision: 5,
                     },
                     grid: {
                         // borderColor: '#FFFFFF',
