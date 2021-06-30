@@ -270,10 +270,6 @@ function makeChart(price, day, coinName, chartId){
                 x: {
                     ticks: {
                         display: false
-                    },
-                    grid: {
-                        // borderColor: '#FFFFFF',
-                        // color: '#FFFFFF'
                     }
                 },
                 y: {
@@ -284,10 +280,6 @@ function makeChart(price, day, coinName, chartId){
                         },
                         color: '#FFFFFF',
                         precision: 5,
-                    },
-                    grid: {
-                        // borderColor: '#FFFFFF',
-                        // color: '#FFFFFF'
                     }
                 }
             }    
