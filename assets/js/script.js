@@ -295,19 +295,34 @@ $(document).ready(function(){
 var tweetBar = document.querySelector("#tweet-bar");
 var tweetDataContainer = [];
 
+var fullText;
+var favCount;
+var quoteCount;
+var replyCount;
+var rtCount;
+
 var matTwitBlock = "";
 
 function generateTwitCard() {
     for (i = 0; i < tweetDataContainer.length; i++) {
+        fullText = tweetDataContainer[i].full_text;
+        favCount = tweetDataContainer[i].favorite_count;
+        quoteCount = tweetDataContainer[i].quote_count;
+        replyCount = tweetDataContainer[i].reply_count;
+        rtCount = tweetDataContainer[i].retweet_count;
+
         matTwitBlock +=     '<div class="row">'
         matTwitBlock +=         '<div class="col s12 m12 l12">'
         matTwitBlock +=             '<div class="card blue-grey darken-1">'
         matTwitBlock +=                 '<div class="card-content white-text">'
         matTwitBlock +=                     '<span class="card-title">Username</span>' // USERNAME HERE??
-        matTwitBlock +=                     '<p>' + tweetDataContainer[i].full_text + '</p>' // tweetDataContainer TEXT HERE
+        matTwitBlock +=                     '<p>' + fullText + '</p>' // tweetDataContainer TEXT HERE
         matTwitBlock +=                     '<br/>'
-        matTwitBlock +=                 '<div>'
-        matTwitBlock +=                     '<a href="#">This is a link</a>' // TWEET LINK HERE
+        matTwitBlock +=                 '<div style="display: flex; flex-direction: row">'
+        matTwitBlock +=                     '<p style="padding: 5px 5px 5px 0">' + favCount + '</p>' // FAV COUNT
+        matTwitBlock +=                     '<p style="padding: 5px 5px 5px 0">' + quoteCount + '</p>' // QUOTE COUNT
+        matTwitBlock +=                     '<p style="padding: 5px 5px 5px 0">' + replyCount + '</p>' // REPLY COUNT
+        matTwitBlock +=                     '<p style="padding: 5px 5px 5px 0">' + rtCount + '</p>' // RT COUNT
         matTwitBlock +=                 '</div>'
         matTwitBlock +=             '<div class="card-action">'
         matTwitBlock +=         '</div>'
@@ -361,9 +376,6 @@ $(document).on('click','.close-button',function() {
 });
 // ------- END close button listener-------- //
 // ------- Twitter Feed Fetch -------- //
-var hashtag = 'doge';
-var startDate = '2021-06-29';
-var endDate = '2021-06-30';
 
 // ENDPOINT DATA OBJECT
 var endPointData = {
@@ -420,13 +432,12 @@ function getDates() {
 
 //Add Event listener for twitterFetch function
 
-document.addEventListener('scroll', function(e) {
-    
+document.addEventListener('scroll', function() {
     if($(window).scrollTop()>$('#card-space').offset().top){
         height = $('footer').offset().top - window.scrollY;
         twit.style.cssText = 'position: fixed; top: 0; height: '+height+'px;';
-    }
-    else{
+    } 
+    else {
         twit.style.cssText ='';
     }
-  });
+});
