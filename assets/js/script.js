@@ -297,22 +297,23 @@ var tweetDataContainer = [];
 var matTwitBlock = "";
 
 function generateTwitCard() {
-    matTwitBlock +=     '<div class="row">'
-    matTwitBlock +=         '<div class="col s12 m12 l12">'
-    matTwitBlock +=             '<div class="card blue-grey darken-1">'
-    matTwitBlock +=                 '<div class="card-content white-text">'
-    matTwitBlock +=                     '<span class="card-title">Card Title</span>' // USERNAME HERE??
-    matTwitBlock +=                     '<p>' + tweetDataContainer[0].full_text + '</p>' // tweetDataContainer TEXT HERE
-    matTwitBlock +=                     '<br/>'
-    matTwitBlock +=                 '<div>'
-    matTwitBlock +=                     '<a href="#">This is a link</a>' // TWEET LINK HERE
-    matTwitBlock +=                 '</div>'
-    matTwitBlock +=             '<div class="card-action">'
-    matTwitBlock +=         '</div>'
-    matTwitBlock +=     '</div>'
-    matTwitBlock += '</div>'
-
-    tweetBar.innerHTML += matTwitBlock;
+    for (i = 0; i < tweetDataContainer.length; i++) {
+        matTwitBlock +=     '<div class="row">'
+        matTwitBlock +=         '<div class="col s12 m12 l12">'
+        matTwitBlock +=             '<div class="card blue-grey darken-1">'
+        matTwitBlock +=                 '<div class="card-content white-text">'
+        matTwitBlock +=                     '<span class="card-title">Username</span>' // USERNAME HERE??
+        matTwitBlock +=                     '<p>' + tweetDataContainer[i].full_text + '</p>' // tweetDataContainer TEXT HERE
+        matTwitBlock +=                     '<br/>'
+        matTwitBlock +=                 '<div>'
+        matTwitBlock +=                     '<a href="#">This is a link</a>' // TWEET LINK HERE
+        matTwitBlock +=                 '</div>'
+        matTwitBlock +=             '<div class="card-action">'
+        matTwitBlock +=         '</div>'
+        matTwitBlock +=     '</div>'
+        matTwitBlock += '</div>'
+    }
+        tweetBar.innerHTML += matTwitBlock;
 }
 
 console.log(tweetBar.innerHTML);
