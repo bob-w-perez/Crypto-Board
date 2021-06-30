@@ -63,13 +63,13 @@ main {
 #tweet-bar {
     min-height: 500px;
     display: flex;
+    flex-wrap: wrap;
 }
 
 #card-space {
     min-height: 500px;
     display: flex;
     flex-wrap: wrap;
-
 }
 
 

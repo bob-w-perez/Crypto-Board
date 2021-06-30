@@ -1,5 +1,6 @@
 var queryEl = document.getElementById('autocomplete-input');
 var searchFormEl = document.getElementById('search-form');
+var twit = document.querySelector('#tweet-bar');
 var coins = null;
 var activeCoins = [];
 
@@ -419,3 +420,13 @@ function getDates() {
 
 //Add Event listener for twitterFetch function
 
+document.addEventListener('scroll', function(e) {
+    
+    if($(window).scrollTop()>$('#card-space').offset().top){
+        height = $('footer').offset().top - window.scrollY;
+        twit.style.cssText = 'position: fixed; top: 0; height: '+height+'px;';
+    }
+    else{
+        twit.style.cssText ='';
+    }
+  });
