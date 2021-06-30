@@ -126,7 +126,23 @@ $(document).ready(function(){
     $('.collapsible').collapsible();
   });
 
-// ------- Twitter Feed Fetch -------- //
+// -------------------------------------------------- TWITTER CARD ------------------------------------------------ //
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Card Generation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
+// fetch("../../index.html")
+//   .then(response => {
+//     console.log(response.text);
+//     return response.text();
+//   })
+//   .then(data => {
+//     document.querySelector("#card-space").innerHTML = data;
+//     console.log(data);
+//   });
+
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Twitter API Fetcher ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
+
 // ENDPOINT DATE DATA OBJECT
 var endPointDateData = {
     startData: {
@@ -143,17 +159,16 @@ var endPointDateData = {
 
 // ENDPOINT DATA OBJECT
 var endPointData = {
-    endpointParts: {
-        hashtag: 'doge',
-        startDate: endPointDateData.startData.startYear + "-" + endPointDateData.startData.startMonth + "-" + endPointDateData.startData.startDay,
-        endDate: endPointDateData.endData.endYear + "-" + endPointDateData.endData.endMonth + "-" + endPointDateData.endData.endDay
-    },
-    endPoint: "/getSearch?" + "hashtag=" + this.hashtag + "&start_date=" + this.startDate + "&end_date=" + this.endDate
+    hashtag: 'doge',
+    startDate: endPointDateData.startData.startYear + "-" + endPointDateData.startData.startMonth + "-" + endPointDateData.startData.startDay,
+    endDate: endPointDateData.endData.endYear + "-" + endPointDateData.endData.endMonth + "-" + endPointDateData.endData.endDay
 }
 
-console.log(endPointData.endPoint);
+var endPoint = "/getSearch?" + "hashtag=" + endPointData.hashtag + "&start_date=" + endPointData.startDate + "&end_date=" + endPointData.endDate;
 
-// FETCHER
+console.log(endPoint);
+
+// TWEET FETCHER
 function twitterfetch() {
     fetch("https://twitter32.p.rapidapi.com" + endPointData.endPoint, {
     method: "GET",
@@ -171,7 +186,8 @@ function twitterfetch() {
     })
 }
 
-// ------- Generate Start/End Dates for Twitter URL ------- //
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Generate Start/End Dates for Twitter URL ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
+
 // DATE GENERATOR
 function getDates() {
     var today = new Date(); // Makes new date object for today
