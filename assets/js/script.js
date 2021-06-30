@@ -300,7 +300,8 @@ function monthConverter(month) {
     for (i = 0; i < monthAbr.length; i++) {
         if (monthAbr[i] == month) {
             console.log('0' + i);
-            return '0' + i;
+            console.log(month);
+            return '0' + String(i+1);
         }
     }
 }
@@ -325,6 +326,7 @@ var endPointData = {
     endDate: endPointDateData.endData.endYear + "-" + endPointDateData.endData.endMonth + "-" + endPointDateData.endData.endDay
 }
 
+console.log(endPointData.startDate);
 console.log(endPointData.endDate);
 
 var endPoint = "/getSearch?" + "hashtag=" + endPointData.hashtag + "&start_date=" + endPointData.startDate + "&end_date=" + endPointData.endDate;
