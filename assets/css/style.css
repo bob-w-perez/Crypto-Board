@@ -32,21 +32,28 @@ main {
     font-size: 20px;
 }
 
-canvas {
-    width: 100%;
-    height: 100%;
+#form-wrapper {
+    display: flex;
+    justify-content: center;
 }
 
-#canvas-wrapper {
-    background-color: #FFFFFF;
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto;
-
+#input-wrapper {
+    width: fit-content;
 }
+
+#autocomplete-input{
+    width: 30vw;
+    margin-right: 50px;
+}
+
+#search-submit-btn {
+    display: inline;
+}
+
 
 #main-row {
     margin-bottom: 0;
+    display: flex;
 }
 
 #main-title {
@@ -54,12 +61,36 @@ canvas {
 }
 
 #tweet-bar {
-    height: 100vh;
+    min-height: 500px;
+    display: flex;
 }
 
 #card-space {
-    height: 100vh;
+    min-height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+
 }
+
+.coin-card {
+    margin: 20px;
+    font-size: 20px;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    margin: 0 10px;
+    padding-bottom: 10px;
+}
+
+.canvas-wrapper {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+
+}
+
 
 #copyright-bar{
     display: flex;
