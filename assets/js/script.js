@@ -86,7 +86,7 @@ function genCoinCard(coin, coinIcon){
                     "<p><b>24H Volume:</b> $"+coin.volume.toFixed(2)+"</p>"+
                     "<p><b>Rank:</b> "+coin.rank+"</p>"+
                     "<p><b>Supply:</b> "+coin.supply+"</p>"+
-                    '<div class="card-buttons"><a class="waves-effect waves-light btn-small"><i class="material-icons right">chat</i>Twitter Feed</a><a class="close-button waves-effect waves-light btn-small">Close</a>';
+                    '<div class="card-buttons"><a class="waves-effect waves-light btn-small"><i class="material-icons right">chat</i>Twitter Feed</a><a data-name='+ coin.name +' class="close-button waves-effect waves-light btn-small">Close</a>';
 
     var newCoin = document.createElement('div');
     newCoin.classList.add('coin-card')
@@ -300,6 +300,11 @@ $(document).ready(function(){
 
 $(document).on('click','.close-button',function() {
     $(this).closest("div.card").remove();
+    // console.log(this.dataset.name)
+    console.log(activeCoins)
+    activeCoins.splice(activeCoins.indexOf(this.dataset.name),1);
+    console.log(activeCoins)
+
 });
 // ------- END close button listener-------- //
 // ------- Twitter Feed Fetch -------- //
