@@ -129,17 +129,27 @@ $(document).ready(function(){
 // -------------------------------------------------- TWITTER CARD ------------------------------------------------ //
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Card Generation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-// fetch("../../index.html")
-//   .then(response => {
-//     console.log(response.text);
-//     return response.text();
-//   })
-//   .then(data => {
-//     document.querySelector("#card-space").innerHTML = data;
-//     console.log(data);
-//   });
+var tweetBar = document.querySelector("#tweet-bar");
 
+matTwitBlock = "";
 
+matTwitBlock += '<div class="card">'
+matTwitBlock +=     '<div class="card-image waves-effect waves-block waves-light">'
+matTwitBlock +=     '  <img class="activator" src="images/office.jpg">'
+matTwitBlock +=     '</div>'
+matTwitBlock +=     '<div class="card-content">'
+matTwitBlock +=     '  <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>'
+matTwitBlock +=     '  <p><a href="#">This is a link</a></p>'
+matTwitBlock +=     '</div>'
+matTwitBlock +=     '<div class="card-reveal">'
+matTwitBlock +=     '  <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>'
+matTwitBlock +=     '  <p>Here is some more information about this product that is only revealed once clicked on.</p>'
+matTwitBlock +=     '</div>'
+matTwitBlock += '</div>'
+
+tweetBar.innerHTML += matTwitBlock;
+
+console.log(tweetBar.innerHTML);
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Twitter API Fetcher ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
