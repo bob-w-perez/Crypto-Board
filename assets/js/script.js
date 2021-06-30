@@ -271,19 +271,20 @@ $(document).ready(function(){
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Card Generation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 var tweetBar = document.querySelector("#tweet-bar");
 
-matTwitBlock = "";
+var matTwitBlock = "";
 
-matTwitBlock += '<div class="card">'
-matTwitBlock +=     '<div class="card-image waves-effect waves-block waves-light">'
-matTwitBlock +=     '  <img class="activator" src="images/office.jpg">'
-matTwitBlock +=     '</div>'
-matTwitBlock +=     '<div class="card-content">'
-matTwitBlock +=     '  <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>'
-matTwitBlock +=     '  <p><a href="#">This is a link</a></p>'
-matTwitBlock +=     '</div>'
-matTwitBlock +=     '<div class="card-reveal">'
-matTwitBlock +=     '  <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>'
-matTwitBlock +=     '  <p>Here is some more information about this product that is only revealed once clicked on.</p>'
+matTwitBlock +=     '<div class="row">'
+matTwitBlock +=         '<div class="col s12 m6">'
+matTwitBlock +=             '<div class="card blue-grey darken-1">'
+matTwitBlock +=                 '<div class="card-content white-text">'
+matTwitBlock +=                     '<span class="card-title">Card Title</span>'
+matTwitBlock +=                     '<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>'
+matTwitBlock +=                 '<div>'
+matTwitBlock +=                     '<a href="#">This is a link</a>'
+matTwitBlock +=                     '<a href="#">This is a link</a>'
+matTwitBlock +=                 '</div>'
+matTwitBlock +=             '<div class="card-action">'
+matTwitBlock +=         '</div>'
 matTwitBlock +=     '</div>'
 matTwitBlock += '</div>'
 
