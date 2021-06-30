@@ -274,14 +274,13 @@ var tweetBar = document.querySelector("#tweet-bar");
 var matTwitBlock = "";
 
 matTwitBlock +=     '<div class="row">'
-matTwitBlock +=         '<div class="col s12 m6">'
+matTwitBlock +=         '<div class="col s12 m12 l12">'
 matTwitBlock +=             '<div class="card blue-grey darken-1">'
 matTwitBlock +=                 '<div class="card-content white-text">'
-matTwitBlock +=                     '<span class="card-title">Card Title</span>'
-matTwitBlock +=                     '<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>'
+matTwitBlock +=                     '<span class="card-title">Card Title</span>' // USERNAME HERE
+matTwitBlock +=                     '<p></p>' // TWITTER TEXT HERE
 matTwitBlock +=                 '<div>'
-matTwitBlock +=                     '<a href="#">This is a link</a>'
-matTwitBlock +=                     '<a href="#">This is a link</a>'
+matTwitBlock +=                     '<a href="#">This is a link</a>' // TWEET LINK HERE
 matTwitBlock +=                 '</div>'
 matTwitBlock +=             '<div class="card-action">'
 matTwitBlock +=         '</div>'
@@ -295,16 +294,27 @@ console.log(tweetBar.innerHTML);
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Twitter API Fetcher ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
 // ENDPOINT DATE DATA OBJECT
+var monthAbr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+function monthConverter(month) {
+    for (i = 0; i < monthAbr.length; i++) {
+        if (monthAbr[i] == month) {
+            console.log('0' + i);
+            return '0' + i;
+        }
+    }
+}
+
 var endPointDateData = {
     startData: {
-        startYear: getDates()[1],
-        startMonth: getDates()[0],
-        startDay: getDates()[2]
+        startYear: getDates()[2],
+        startMonth: monthConverter(getDates()[0]),
+        startDay: getDates()[1]
     },
     endData: {
-        endYear: getDates()[4],
-        endMonth: getDates()[3],
-        endDay: getDates()[5]
+        endYear: getDates()[5],
+        endMonth: monthConverter(getDates()[3]),
+        endDay: getDates()[4]
     }
 }
 
@@ -315,9 +325,9 @@ var endPointData = {
     endDate: endPointDateData.endData.endYear + "-" + endPointDateData.endData.endMonth + "-" + endPointDateData.endData.endDay
 }
 
-var endPoint = "/getSearch?" + "hashtag=" + endPointData.hashtag + "&start_date=" + endPointData.startDate + "&end_date=" + endPointData.endDate;
+console.log(endPointData.endDate);
 
-console.log(endPoint);
+var endPoint = "/getSearch?" + "hashtag=" + endPointData.hashtag + "&start_date=" + endPointData.startDate + "&end_date=" + endPointData.endDate;
 
 // TWEET FETCHER
 function twitterfetch() {
@@ -333,9 +343,11 @@ function twitterfetch() {
         return response.json();
     })
     .then(data => {
-        console.log(data.data.tweets);
+        console.log(data);
     })
 }
+
+twitterfetch();
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Generate Start/End Dates for Twitter URL ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
