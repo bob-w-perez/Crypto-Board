@@ -62,10 +62,7 @@ function makeTermGlossary() {
     })
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> f461edb09ed1aabaa4118b4bc1c116e0e74f04bb
 function genCoinCard(coin){
     var coinsArea = document.getElementById('card-space');
 
@@ -85,17 +82,8 @@ function genCoinCard(coin){
     newCoin.innerHTML = "<div class=\"row\"><div class=\"col s12 m6\"><div class=\"card\"><div class=\"card-image\"><img src=\"../assets/images/favicon-1.png\"><span class=\"card-title\">Card Title</span><a class=\"btn-floating halfway-fab waves-effect waves-light red\"><i class=\"material-icons\">add</i></a></div><div class=\"card-content\"><p>"+coinString+"</p></div></div></div></div>";
 
     coinsArea.appendChild(newCoin);
-
-
-
-
 }
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> f461edb09ed1aabaa4118b4bc1c116e0e74f04bb
 queryEl.addEventListener("keypress", function(event){
     console.log('activated')
 
@@ -165,15 +153,17 @@ function getChartData(coinName) {
             day.push(info.prices[i][0]);
             price.push(info.prices[i][1]);
         };
-
+        return [price, day, coinName];
+    }).then(function(chartData){
+        makeChart(chartData[0], chartData[1], chartData[2]);
     })
-    return [price, day, coinName];
+    
     
 }
 
 var chartData = getChartData('ethereum');
-console.log(chartData)
-setTimeout(function(){makeChart(chartData[0], chartData[1], chartData[2])},2000)
+// console.log(chartData)
+// setTimeout(function(){makeChart(chartData[0], chartData[1], chartData[2])},2000)
 
 function makeChart(price, day, coinName){
     var ctx = document.getElementById('myChart');
@@ -259,6 +249,3 @@ function twitterfetch() {
 }
 twitterfetch();
 //Add Event listener for twitterFetch function
-
-      
-
