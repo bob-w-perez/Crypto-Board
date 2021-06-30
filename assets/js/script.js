@@ -77,7 +77,7 @@ function genCoinCard(coin, coinIcon){
 
     var name = coin.name;
 
-    var coinString = "<img class='coin-icon' src=" + coinIcon+"/>" +
+    var coinString = //"<img class='coin-icon' src=" + coinIcon+"/>" +
                     "<p><b>Name:</b> "+coin.name+"</p>"+
                     "<p><b>Symbol:</b> "+coin.symbol+"</p>"+
                     "<p><b>Price:</b> $"+coin.price.toFixed(2)+"</p>"+
@@ -85,11 +85,12 @@ function genCoinCard(coin, coinIcon){
                     "<p><b>All time high:</b> $"+coin.ath.toFixed(2)+"</p>"+
                     "<p><b>24H Volume:</b> $"+coin.volume.toFixed(2)+"</p>"+
                     "<p><b>Rank:</b> "+coin.rank+"</p>"+
-                    "<p><b>Supply:</b> "+coin.supply;
+                    "<p><b>Supply:</b> "+coin.supply+"</p>"+
+                    '<div class="card-buttons"><a class="waves-effect waves-light btn-small"><i class="material-icons right">chat</i>Twitter Feed</a><a class="close-button waves-effect waves-light btn-small">Close</a>';
 
     var newCoin = document.createElement('div');
     newCoin.classList.add('coin-card')
-    newCoin.innerHTML = "<div class=\"card\"><div class=\"card-image\"><div id="+ chartTargetId +"></div><a class=\"btn-floating halfway-fab waves-effect waves-light red\"><i class=\"material-icons\">add</i></a></div><div class=\"card-content amber lighten-3\"><p>"+coinString+"</p></div></div>";
+    newCoin.innerHTML = "<div class=\"card\"><div class=\"card-image\"><div id="+ chartTargetId +"></div><a class=\"btn-floating btn-large halfway-fab waves-effect waves-light white\"><img src="+ coinIcon+ "></a></div><div class=\"card-content amber lighten-3\"><p>"+coinString+"</p></div></div>";
 
     coinsArea.appendChild(newCoin);
 
@@ -177,8 +178,7 @@ function getCoinIconData(coinName, coin) {
         return response.json();
     }).then(function(info) {
         coinIcon = info[0].image;
-        console.log(coinIcon)
-        genCoinCard(coin, coinIcon)
+        genCoinCard(coin, coinIcon);
 
     });
 
@@ -294,8 +294,14 @@ $(document).ready(function(){
     $('.collapsible').collapsible();
   });
 
-// ------- END jQuery initializations ---------- //     
 
+// ------- END jQuery initializations ---------- //     
+// ------- close button event listener  ---------- //     
+
+$(document).on('click','.close-button',function() {
+    $(this).closest("div.card").remove();
+});
+// ------- END close button listener-------- //
 // ------- Twitter Feed Fetch -------- //
 var hashtag = 'doge';
 var startDate = '2021-06-29';
@@ -304,24 +310,24 @@ var endDate = '2021-06-30';
 
 var endPoint = "/getSearch?" + "hashtag=" + hashtag + "&start_date=" + startDate + "&end_date=" + endDate;
 
-function twitterfetch() {
-    fetch("https://twitter32.p.rapidapi.com" + endPoint, {
-    method: "GET",
-    "headers": {
-        "x-rapidapi-key": "9ce9da8239mshfdc240a5706e6dbp1a372ajsnf408cd27ddc9",
-		"x-rapidapi-host": "twitter32.p.rapidapi.com"
-    }
-})
-    .then(response => {
-        // console.log(response);
-        return response.json();
-    })
-    .then(data => {
-        // console.log(data.data.tweets);
-    })
-}
-twitterfetch();
-//Add Event listener for twitterFetch function
+// function twitterfetch() {
+//     fetch("https://twitter32.p.rapidapi.com" + endPoint, {
+//     method: "GET",
+//     "headers": {
+//         "x-rapidapi-key": "9ce9da8239mshfdc240a5706e6dbp1a372ajsnf408cd27ddc9",
+// 		"x-rapidapi-host": "twitter32.p.rapidapi.com"
+//     }
+// })
+//     .then(response => {
+//         // console.log(response);
+//         return response.json();
+//     })
+//     .then(data => {
+//         // console.log(data.data.tweets);
+//     })
+// }
+// twitterfetch();
+// //Add Event listener for twitterFetch function
 
       
 
