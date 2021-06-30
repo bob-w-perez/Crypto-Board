@@ -53,6 +53,7 @@ main {
 
 #main-row {
     margin-bottom: 0;
+    display: flex;
 }
 
 #main-title {
@@ -60,11 +61,12 @@ main {
 }
 
 #tweet-bar {
-    height: 100vh;
+    height: auto;
+    display: flex;
 }
 
 #card-space {
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
 
