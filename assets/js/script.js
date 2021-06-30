@@ -350,10 +350,10 @@ function generateTwitCard() {
         matTwitBlock +=                     '<p>' + fullText + '</p>' // tweetDataContainer TEXT HERE
         matTwitBlock +=                     '<br/>'
         matTwitBlock +=                 '<div style="display: flex; flex-direction: row">'
-        matTwitBlock +=                     '<p style="padding: 5px 5px 5px 0">' + favCount + '</p>' // FAV COUNT
-        matTwitBlock +=                     '<p style="padding: 5px 5px 5px 0">' + quoteCount + '</p>' // QUOTE COUNT
-        matTwitBlock +=                     '<p style="padding: 5px 5px 5px 0">' + replyCount + '</p>' // REPLY COUNT
-        matTwitBlock +=                     '<p style="padding: 5px 5px 5px 0">' + rtCount + '</p>' // RT COUNT
+        matTwitBlock +=                     '<p style="padding: 5px 20px 5px 0">' + "♥ " + favCount + '</p>' // FAV COUNT
+        matTwitBlock +=                     '<p style="padding: 5px 20px 5px 0">' + "❝ " + quoteCount + '</p>' // QUOTE COUNT
+        matTwitBlock +=                     '<p style="padding: 5px 20px 5px 0">' + "💬 " + replyCount + '</p>' // REPLY COUNT
+        matTwitBlock +=                     '<p style="padding: 5px 20px 5px 0">' + "↪ " + rtCount + '</p>' // RT COUNT
         matTwitBlock +=                 '</div>'
         matTwitBlock +=             '<div class="card-action">'
         matTwitBlock +=         '</div>'
@@ -442,7 +442,7 @@ function twitterfetch() {
     })
 }
 
-// twitterfetch();
+twitterfetch();
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Generate Start/End Dates for Twitter URL ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
 // DATE GENERATOR
@@ -464,18 +464,6 @@ function getDates() {
 
 //Add Event listener for twitterFetch function
 
-<<<<<<< HEAD
-// document.addEventListener('scroll', function(e) {
-    
-//     if($(window).scrollTop()>$('#card-space').offset().top){
-//         height = $('footer').offset().top - window.scrollY;
-//         twit.style.cssText = 'position: fixed; top: 0; height: '+height+'px;';
-//     }
-//     else{
-//         twit.style.cssText ='';
-//     }
-//   });
-=======
 document.addEventListener('scroll', function() {
     if($(window).scrollTop()>$('#card-space').offset().top){
         height = $('footer').offset().top - window.scrollY;
@@ -485,4 +473,3 @@ document.addEventListener('scroll', function() {
         twit.style.cssText ='';
     }
 });
->>>>>>> 8de3e244eb1513dda374fee3c117e8ace59ae743
