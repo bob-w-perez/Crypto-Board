@@ -28,7 +28,6 @@ function getCoinList() {
         return response.json();
     }).then(function(info) {
         coins = info;
-        // console.log(coins);
         info.forEach(coin => {
             data[coin.name] = null;
             data[coin.symbol] = null;
@@ -166,11 +165,6 @@ searchFormEl.addEventListener("submit", function(event){
         
     }
     
-
-
-
-
-
 })
 // ------- Get list of coin icons ------------ //
 function getCoinIconData(coinName, coin) {
@@ -295,6 +289,64 @@ $(document).ready(function(){
     $('.collapsible').collapsible();
   });
 
+// -------------------------------------------------- TWITTER CARD ------------------------------------------------ //
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Card Generation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
+var tweetBar = document.querySelector("#tweet-bar");
+var tweetDataContainer = [];
+
+var matTwitBlock = "";
+
+function generateTwitCard() {
+    for (i = 0; i < tweetDataContainer.length; i++) {
+        matTwitBlock +=     '<div class="row">'
+        matTwitBlock +=         '<div class="col s12 m12 l12">'
+        matTwitBlock +=             '<div class="card blue-grey darken-1">'
+        matTwitBlock +=                 '<div class="card-content white-text">'
+        matTwitBlock +=                     '<span class="card-title">Username</span>' // USERNAME HERE??
+        matTwitBlock +=                     '<p>' + tweetDataContainer[i].full_text + '</p>' // tweetDataContainer TEXT HERE
+        matTwitBlock +=                     '<br/>'
+        matTwitBlock +=                 '<div>'
+        matTwitBlock +=                     '<a href="#">This is a link</a>' // TWEET LINK HERE
+        matTwitBlock +=                 '</div>'
+        matTwitBlock +=             '<div class="card-action">'
+        matTwitBlock +=         '</div>'
+        matTwitBlock +=     '</div>'
+        matTwitBlock += '</div>'
+    }
+        tweetBar.innerHTML += matTwitBlock;
+}
+
+console.log(tweetBar.innerHTML);
+console.log(tweetDataContainer);
+console.log(tweetDataContainer[0]);
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Twitter API Fetcher ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
+
+// MONTH ABBREVIATION CONVERSION
+var monthAbbr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+function monthConverter(month) {
+    for (i = 0; i < monthAbbr.length; i++) {
+        if (monthAbbr[i] == month) {
+            return '0' + String(i + 1);
+        }
+    }
+}
+
+// ENDPOINT DATE DATA OBJECT
+var endPointDateData = {
+    startData: {
+        startYear: getDates()[2],
+        startMonth: monthConverter(getDates()[0]),
+        startDay: getDates()[1]
+    },
+    endData: {
+        endYear: getDates()[5],
+        endMonth: monthConverter(getDates()[3]),
+        endDay: getDates()[4]
+    }
+}
 
 // ------- END jQuery initializations ---------- //     
 // ------- close button event listener  ---------- //     
@@ -313,32 +365,60 @@ var hashtag = 'doge';
 var startDate = '2021-06-29';
 var endDate = '2021-06-30';
 
+// ENDPOINT DATA OBJECT
+var endPointData = {
+    hashtag: 'doge',
+    startDate: endPointDateData.startData.startYear + "-" + endPointDateData.startData.startMonth + "-" + endPointDateData.startData.startDay,
+    endDate: endPointDateData.endData.endYear + "-" + endPointDateData.endData.endMonth + "-" + endPointDateData.endData.endDay
+}
 
-var endPoint = "/getSearch?" + "hashtag=" + hashtag + "&start_date=" + startDate + "&end_date=" + endDate;
+var endPoint = "/getSearch?" + "hashtag=" + endPointData.hashtag + "&start_date=" + endPointData.startDate + "&end_date=" + endPointData.endDate;
 
-// function twitterfetch() {
-//     fetch("https://twitter32.p.rapidapi.com" + endPoint, {
-//     method: "GET",
-//     "headers": {
-//         "x-rapidapi-key": "9ce9da8239mshfdc240a5706e6dbp1a372ajsnf408cd27ddc9",
-// 		"x-rapidapi-host": "twitter32.p.rapidapi.com"
-//     }
-// })
-//     .then(response => {
-//         // console.log(response);
-//         return response.json();
-//     })
-//     .then(data => {
-//         // console.log(data.data.tweets);
-//     })
-// }
-// twitterfetch();
-// //Add Event listener for twitterFetch function
+// TWEET FETCHER
+function twitterfetch() {
+    fetch("https://twitter32.p.rapidapi.com" + endPoint, {
+    method: "GET",
+    "headers": {
+        "x-rapidapi-key": "9ce9da8239mshfdc240a5706e6dbp1a372ajsnf408cd27ddc9",
+		"x-rapidapi-host": "twitter32.p.rapidapi.com"
+    }
+})
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        var tweetData = data.data.tweets;
 
+        Object.keys(tweetData).forEach(key => {
+            tweetDataContainer.push(tweetData[key]);
+            console.log(tweetDataContainer[0]);
+        });
+        //if button clicked display Tweet
+        generateTwitCard();
+    })
+}
 
+twitterfetch();
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Generate Start/End Dates for Twitter URL ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
+// DATE GENERATOR
+function getDates() {
+    var today = new Date(); // Makes new date object for today
+    var tomorrow = new Date(today); 
+    tomorrow.setDate(tomorrow.getDate() + 1); // Makes new date object for tomorrow
 
+    function slicify(day) {
+        var stringifyDay = String(day); // Saves day object parsed as a string
+        var splitDay = stringifyDay.split(" "); // Saves split string in an array
+        var sliceDay = splitDay.slice(1, 4); // Saves month day and year in that order for today in an array
+        return sliceDay;
+    }
 
+    days = slicify(today).concat(slicify(tomorrow)); // Joins respective date arrays
+    return days; // Returns joined dates array
+}
+
+//Add Event listener for twitterFetch function
 
 document.addEventListener('scroll', function(e) {
     
