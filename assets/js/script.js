@@ -17,6 +17,7 @@ function init() {
     chartCount = 0;
     getCoinList();
     makeTermGlossary();
+    
 }
 
 init();
@@ -32,6 +33,7 @@ function getCoinList() {
             data[coin.name] = null;
             data[coin.symbol] = null;
         });
+        retrieveActiveCoins();
 
     })
 }
@@ -111,15 +113,42 @@ function genCoinCard(coin, coinIcon){
 
 }
 
+//------------- Local Storage -----------//
 
+function storeActiveCoins(activeCoins) {
+
+    localStorage.setItem('stored-coins', JSON.stringify(activeCoins))
+
+}
+
+function retrieveActiveCoins() {
+    var storedCoins = JSON.parse(localStorage.getItem('stored-coins'));
+
+    if (storedCoins){
+        storedCoins.forEach(coin => {
+            var newCoin = coin.toLowerCase();
+            console.log(newCoin)
+
+            addNewCoin(newCoin);
+        })
+    }
+}
+
+//------------- END Local Storage -----------//
 
 searchFormEl.addEventListener("submit", function(event){
     // console.log('activated')
     event.preventDefault();
+    var newCoin = queryEl.value.toLowerCase();
+    console.log(newCoin)
+    addNewCoin(newCoin);
+    queryEl.value = '';
+})
 
 
+function addNewCoin(newCoin) {
     if(coins){
-        var query = queryEl.value.toLowerCase();
+        var query = newCoin;
         
         var coin = {
             name: 'placeholder',
@@ -148,7 +177,8 @@ searchFormEl.addEventListener("submit", function(event){
                     
                     
                     activeCoins.push(coin.name);
-                    // console.log(activeCoins);
+                    console.log(activeCoins);
+                    storeActiveCoins(activeCoins);
                     getCoinIconData(coins[i].name.toLowerCase(), coin)
                     // genCoinCard(coin);
                     break;
@@ -161,11 +191,12 @@ searchFormEl.addEventListener("submit", function(event){
 
         // return coin;
         // console.log(coin); 
-        queryEl.value = '';
+        
         
     }
     
-})
+}
+
 // ------- Get list of coin icons ------------ //
 function getCoinIconData(coinName, coin) {
     var coinIcon;
@@ -332,9 +363,9 @@ function generateTwitCard() {
         tweetBar.innerHTML += matTwitBlock;
 }
 
-console.log(tweetBar.innerHTML);
-console.log(tweetDataContainer);
-console.log(tweetDataContainer[0]);
+// console.log(tweetBar.innerHTML);
+// console.log(tweetDataContainer);
+// console.log(tweetDataContainer[0]);
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Twitter API Fetcher ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -371,6 +402,7 @@ $(document).on('click','.close-button',function() {
     // console.log(this.dataset.name)
     console.log(activeCoins)
     activeCoins.splice(activeCoins.indexOf(this.dataset.name),1);
+    storeActiveCoins(activeCoins);
     console.log(activeCoins)
 
 });
@@ -403,14 +435,14 @@ function twitterfetch() {
 
         Object.keys(tweetData).forEach(key => {
             tweetDataContainer.push(tweetData[key]);
-            console.log(tweetDataContainer[0]);
+            // console.log(tweetDataContainer[0]);
         });
         //if button clicked display Tweet
         generateTwitCard();
     })
 }
 
-twitterfetch();
+// twitterfetch();
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Generate Start/End Dates for Twitter URL ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
 // DATE GENERATOR
@@ -432,6 +464,18 @@ function getDates() {
 
 //Add Event listener for twitterFetch function
 
+<<<<<<< HEAD
+// document.addEventListener('scroll', function(e) {
+    
+//     if($(window).scrollTop()>$('#card-space').offset().top){
+//         height = $('footer').offset().top - window.scrollY;
+//         twit.style.cssText = 'position: fixed; top: 0; height: '+height+'px;';
+//     }
+//     else{
+//         twit.style.cssText ='';
+//     }
+//   });
+=======
 document.addEventListener('scroll', function() {
     if($(window).scrollTop()>$('#card-space').offset().top){
         height = $('footer').offset().top - window.scrollY;
@@ -441,3 +485,4 @@ document.addEventListener('scroll', function() {
         twit.style.cssText ='';
     }
 });
+>>>>>>> 8de3e244eb1513dda374fee3c117e8ace59ae743
