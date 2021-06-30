@@ -32,6 +32,24 @@ main {
     font-size: 20px;
 }
 
+#form-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#input-wrapper {
+    width: fit-content;
+}
+
+#autocomplete-input{
+    width: 30vw;
+    margin-right: 50px;
+}
+
+#search-submit-btn {
+    display: inline;
+}
+
 canvas {
     width: 100%;
     height: 100%;

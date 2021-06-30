@@ -1,4 +1,5 @@
 var queryEl = document.getElementById('autocomplete-input');
+var searchFormEl = document.getElementById('search-form');
 var coins = null;
 var activeCoins = [];
 
@@ -109,11 +110,12 @@ function genCoinCard(coin){
 
 
 
-queryEl.addEventListener("keypress", function(event){
+searchFormEl.addEventListener("submit", function(event){
     console.log('activated')
+    event.preventDefault();
 
 
-    if(event.key === 'Enter' && coins){
+    if(coins){
         var query = queryEl.value.toLowerCase();
         
         var coin = {
@@ -155,6 +157,7 @@ queryEl.addEventListener("keypress", function(event){
 
         // return coin;
         console.log(coin); 
+        queryEl.value = '';
         
     }
     
