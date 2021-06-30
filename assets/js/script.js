@@ -82,12 +82,12 @@ function genCoinCard(coin, coinIcon){
     var coinString = //"<img class='coin-icon' src=" + coinIcon+"/>" +
                     "<p><b>Name:</b> "+coin.name+"</p>"+
                     "<p><b>Symbol:</b> "+coin.symbol+"</p>"+
-                    "<p><b>Price:</b> $"+coin.price.toFixed(2)+"</p>"+
-                    "<p><b>Market Cap:</b> $"+coin.mktcap.toFixed(2)+"</p>"+
-                    "<p><b>All time high:</b> $"+coin.ath.toFixed(2)+"</p>"+
-                    "<p><b>24H Volume:</b> $"+coin.volume.toFixed(2)+"</p>"+
+                    "<p><b>Price:</b> $"+coin.price.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
+                    "<p><b>Market Cap:</b> $"+coin.mktcap.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
+                    "<p><b>All time high:</b> $"+coin.ath.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
+                    "<p><b>24H Volume:</b> $"+coin.volume.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
                     "<p><b>Rank:</b> "+coin.rank+"</p>"+
-                    "<p><b>Supply:</b> "+coin.supply+"</p>"+
+                    "<p><b>Supply:</b> "+coin.supply.toLocaleString()+"</p>"+
                     '<div class="card-buttons"><a class="waves-effect waves-light btn-small"><i class="material-icons right">chat</i>Twitter Feed</a><a data-name='+ coin.name +' class="close-button waves-effect waves-light btn-small">Close</a>';
 
     var newCoin = document.createElement('div');
@@ -259,6 +259,7 @@ function makeChart(price, day, coinName, chartId){
                 title: {
                     display: true,
                     text: coinName + ' (past 30 days)',
+                    color: '#ffffff',
                     font: {
                         size: 20,
                         weight: 800,
@@ -442,7 +443,7 @@ function twitterfetch() {
     })
 }
 
-// twitterfetch();
+twitterfetch();
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Generate Start/End Dates for Twitter URL ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
 // DATE GENERATOR
@@ -464,18 +465,6 @@ function getDates() {
 
 //Add Event listener for twitterFetch function
 
-<<<<<<< HEAD
-// document.addEventListener('scroll', function(e) {
-    
-//     if($(window).scrollTop()>$('#card-space').offset().top){
-//         height = $('footer').offset().top - window.scrollY;
-//         twit.style.cssText = 'position: fixed; top: 0; height: '+height+'px;';
-//     }
-//     else{
-//         twit.style.cssText ='';
-//     }
-//   });
-=======
 document.addEventListener('scroll', function() {
     if($(window).scrollTop()>$('#card-space').offset().top){
         height = $('footer').offset().top - window.scrollY;
@@ -485,4 +474,3 @@ document.addEventListener('scroll', function() {
         twit.style.cssText ='';
     }
 });
->>>>>>> 8de3e244eb1513dda374fee3c117e8ace59ae743
