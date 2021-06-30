@@ -8,9 +8,11 @@ const coinGeckoList = [];
 // data for search autocomplete
 var data = { };
 
+var chartCount;
 
 
 function init() {
+    chartCount = 0;
     getCoinList();
     makeTermGlossary();
 }
@@ -23,7 +25,6 @@ function getCoinList() {
     fetch('https://api.coinpaprika.com/v1/tickers').then(function(response) {
         return response.json();
     }).then(function(info) {
-        // console.log(info);
         coins = info;
         console.log(coins);
         info.forEach(coin => {
@@ -64,10 +65,16 @@ function makeTermGlossary() {
 
 
 function genCoinCard(coin){
+    //------ chart addition ----//
+    // this may cause issues when deleting chart from page, but not sure...
+    chartCount++;
+    var chartTargetId = 'chart-target' + chartCount;
+    // ------- end chart addition ------//
+
     var coinsArea = document.getElementById('card-space');
 
     var name = coin.name;
-    
+
 
     var coinString = "<p>Name: "+coin.name+"</p>"+
                     "<p>Symbol: "+coin.symbol+"</p>"+
@@ -79,11 +86,23 @@ function genCoinCard(coin){
                     "<p>Supply: "+coin.supply;
 
     var newCoin = document.createElement('div');
-    newCoin.innerHTML = "<div class=\"row\"><div class=\"col s12 m6\"><div class=\"card\"><div class=\"card-image\"><img src=\"../assets/images/favicon-1.png\"><span class=\"card-title\">Card Title</span><a class=\"btn-floating halfway-fab waves-effect waves-light red\"><i class=\"material-icons\">add</i></a></div><div class=\"card-content\"><p>"+coinString+"</p></div></div></div></div>";
+    newCoin.innerHTML = "<div class=\"card\"><div class=\"card-image\"><div id="+ chartTargetId +"></div><a class=\"btn-floating halfway-fab waves-effect waves-light red\"><i class=\"material-icons\">add</i></a></div><div class=\"card-content\"><p>"+coinString+"</p></div></div>";
 
     coinsArea.appendChild(newCoin);
 
-
+    //------ chart addition ----//
+    var chartWrapper = document.createElement('div');
+    chartWrapper.classList.add('canvas-wrapper');
+    var coinChart = document.createElement('canvas');
+    coinChartId = coin.name + '-chart';
+    console.log(coinChartId);
+    coinChart.setAttribute('id', coinChartId);
+    chartWrapper.append(coinChart);
+    
+    var chartTarget = document.getElementById(chartTargetId);
+    chartTarget.append(chartWrapper);
+    getChartData(coin.name.toLowerCase(), coinChartId);
+    // ------- end chart addition ------//
 
 
 }
@@ -145,9 +164,9 @@ queryEl.addEventListener("keypress", function(event){
 
 
 })
-// ------- chart sections ----------- //
-function getChartData(coinName) {
-
+// ------- Chart data and Make chart ----------- //
+function getChartData(coinName, chartId) {
+    
     var price = [];
     var day = [];
 
@@ -158,19 +177,19 @@ function getChartData(coinName) {
         for (i = 0; i < info.prices.length; i++){
             day.push(info.prices[i][0]);
             price.push(info.prices[i][1]);
+           
         };
-
+        return [price, day, (coinName[0].toUpperCase()+coinName.substring(1))];
+    }).then(function(chartData){
+        makeChart(chartData[0], chartData[1], chartData[2], chartId);
     })
-    return [price, day, coinName];
+    
     
 }
 
-var chartData = getChartData('ethereum');
-console.log(chartData)
-setTimeout(function(){makeChart(chartData[0], chartData[1], chartData[2])},2000)
 
-function makeChart(price, day, coinName){
-    var ctx = document.getElementById('myChart');
+function makeChart(price, day, coinName, chartId){
+    var ctx = document.getElementById(chartId);
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -203,6 +222,9 @@ function makeChart(price, day, coinName){
     )
 }
 
+// ------- END Chart data and Make chart ----------- //
+
+
 // ------- jQuery initializations for Materialize components ---------- //
 
 // M.AutoInit();
@@ -226,7 +248,8 @@ $(document).ready(function(){
     $('.collapsible').collapsible();
   });
 
-       
+// ------- END jQuery initializations ---------- //     
+
 // ------- Twitter Feed Fetch -------- //
 var hashtag = 'doge';
 var startDate = '2021-06-29';

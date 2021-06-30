@@ -37,7 +37,7 @@ canvas {
     height: 100%;
 }
 
-#canvas-wrapper {
+.canvas-wrapper {
     background-color: #FFFFFF;
     position: relative;
     max-width: 600px;
@@ -59,6 +59,9 @@ canvas {
 
 #card-space {
     height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+
 }
 
 #copyright-bar{
