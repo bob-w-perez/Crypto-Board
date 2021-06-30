@@ -62,14 +62,12 @@ main {
 
 #tweet-bar {
     min-height: 500px;
-    display: flex;
-    flex-wrap: wrap;
     max-height: 100vh;
     overflow: scroll;
 }
 
 #card-space {
-    min-height: 500px;
+    min-height: 100vh;
     display: flex;
     flex-wrap: wrap;
 }
