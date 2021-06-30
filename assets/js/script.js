@@ -293,19 +293,20 @@ console.log(tweetBar.innerHTML);
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Twitter API Fetcher ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
-// ENDPOINT DATE DATA OBJECT
-var monthAbr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+// MONTH ABBREVIATION CONVERSION
+var monthAbbr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 function monthConverter(month) {
-    for (i = 0; i < monthAbr.length; i++) {
-        if (monthAbr[i] == month) {
+    for (i = 0; i < monthAbbr.length; i++) {
+        if (monthAbbr[i] == month) {
             console.log('0' + i);
             console.log(month);
-            return '0' + String(i+1);
+            return '0' + String(i + 1);
         }
     }
 }
 
+// ENDPOINT DATE DATA OBJECT
 var endPointDateData = {
     startData: {
         startYear: getDates()[2],
@@ -345,7 +346,11 @@ function twitterfetch() {
         return response.json();
     })
     .then(data => {
-        console.log(data);
+        var tweetData = data.data.tweets;
+
+        Object.keys(tweetData).forEach(key => {
+            tweetData[key];
+        });
     })
 }
 
