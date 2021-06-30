@@ -93,9 +93,9 @@ function genCoinCard(coin){
 
     //------ chart addition ----//
     var chartWrapper = document.createElement('div');
-    chartWrapper.classList.add('canvas-wrapper', 'grey', 'darken-3');
+    chartWrapper.classList.add('canvas-wrapper', 'grey'); //  'darken-3'
     var coinChart = document.createElement('canvas');
-    coinChart.classList.add('white');
+    coinChart.classList.add('grey');
     coinChartId = coin.name + '-chart';
     coinChart.setAttribute('id', coinChartId);
     chartWrapper.append(coinChart);
@@ -199,16 +199,31 @@ function makeChart(price, day, coinName, chartId){
             labels: day,
             datasets: [{
                 label: coinName + ' price (last 30 days)',
-                data: price
+                data: price,
+                backgroundColor: '#27DA1B',
+                borderColor: '#27DA1B'
                 }]
         },
         options: {
             maintainAspectRatio: false,
             responsive: false,
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: coinName + ' price (last 30 days)',
+                }
+            },
             scales: {
                 x: {
                     ticks: {
                         display: false
+                    },
+                    grid: {
+                        // borderColor: '#FFFFFF',
+                        // color: '#FFFFFF'
                     }
                 },
                 y: {
@@ -216,10 +231,15 @@ function makeChart(price, day, coinName, chartId){
                         // Include a dollar sign in the ticks
                         callback: function(value, index, values) {
                             return '$' + value;
-                        }
+                        },
+                        color: '#FFFFFF'
+                    },
+                    grid: {
+                        // borderColor: '#FFFFFF',
+                        // color: '#FFFFFF'
                     }
                 }
-            }       
+            }    
         }
     }
     )
