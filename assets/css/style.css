@@ -15,6 +15,10 @@ main {
     object-fit: cover;
 }
 
+.sidenav-trigger {
+    color: black;
+    font-weight: 700;
+}
 #term-glossary {
     padding-left: 20px;
 }
