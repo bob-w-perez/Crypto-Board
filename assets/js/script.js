@@ -27,7 +27,6 @@ function getCoinList() {
         return response.json();
     }).then(function(info) {
         coins = info;
-        console.log(coins);
         info.forEach(coin => {
             data[coin.name] = null;
             data[coin.symbol] = null;
@@ -270,26 +269,32 @@ $(document).ready(function(){
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Card Generation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 var tweetBar = document.querySelector("#tweet-bar");
+var tweetDataContainer = [];
 
 var matTwitBlock = "";
 
-matTwitBlock +=     '<div class="row">'
-matTwitBlock +=         '<div class="col s12 m12 l12">'
-matTwitBlock +=             '<div class="card blue-grey darken-1">'
-matTwitBlock +=                 '<div class="card-content white-text">'
-matTwitBlock +=                     '<span class="card-title">Card Title</span>' // USERNAME HERE
-matTwitBlock +=                     '<p></p>' // TWITTER TEXT HERE
-matTwitBlock +=                 '<div>'
-matTwitBlock +=                     '<a href="#">This is a link</a>' // TWEET LINK HERE
-matTwitBlock +=                 '</div>'
-matTwitBlock +=             '<div class="card-action">'
-matTwitBlock +=         '</div>'
-matTwitBlock +=     '</div>'
-matTwitBlock += '</div>'
+function generateTwitCard() {
+    matTwitBlock +=     '<div class="row">'
+    matTwitBlock +=         '<div class="col s12 m12 l12">'
+    matTwitBlock +=             '<div class="card blue-grey darken-1">'
+    matTwitBlock +=                 '<div class="card-content white-text">'
+    matTwitBlock +=                     '<span class="card-title">Card Title</span>' // USERNAME HERE
+    matTwitBlock +=                     '<p></p>' // tweetDataContainer TEXT HERE
+    matTwitBlock +=                 '<div>'
+    matTwitBlock +=                     '<a href="#">This is a link</a>' // TWEET LINK HERE
+    matTwitBlock +=                 '</div>'
+    matTwitBlock +=             '<div class="card-action">'
+    matTwitBlock +=         '</div>'
+    matTwitBlock +=     '</div>'
+    matTwitBlock += '</div>'
 
-tweetBar.innerHTML += matTwitBlock;
+    tweetBar.innerHTML += matTwitBlock;
+}
+
+generateTwitCard();
 
 console.log(tweetBar.innerHTML);
+
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Twitter API Fetcher ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -299,8 +304,6 @@ var monthAbbr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 
 function monthConverter(month) {
     for (i = 0; i < monthAbbr.length; i++) {
         if (monthAbbr[i] == month) {
-            console.log('0' + i);
-            console.log(month);
             return '0' + String(i + 1);
         }
     }
@@ -327,9 +330,6 @@ var endPointData = {
     endDate: endPointDateData.endData.endYear + "-" + endPointDateData.endData.endMonth + "-" + endPointDateData.endData.endDay
 }
 
-console.log(endPointData.startDate);
-console.log(endPointData.endDate);
-
 var endPoint = "/getSearch?" + "hashtag=" + endPointData.hashtag + "&start_date=" + endPointData.startDate + "&end_date=" + endPointData.endDate;
 
 // TWEET FETCHER
@@ -342,20 +342,18 @@ function twitterfetch() {
     }
 })
     .then(response => {
-        console.log(response);
         return response.json();
     })
     .then(data => {
         var tweetData = data.data.tweets;
 
         Object.keys(tweetData).forEach(key => {
-            tweetData[key];
+            tweetDataContainer.push(tweetData[key]);
         });
     })
 }
 
 twitterfetch();
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Generate Start/End Dates for Twitter URL ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
 // DATE GENERATOR
