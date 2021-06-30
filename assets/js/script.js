@@ -332,6 +332,8 @@ var quoteCount;
 var replyCount;
 var rtCount;
 
+var timestamp;
+
 var matTwitBlock = "";
 
 function generateTwitCard() {
@@ -341,12 +343,14 @@ function generateTwitCard() {
         quoteCount = tweetDataContainer[i].quote_count;
         replyCount = tweetDataContainer[i].reply_count;
         rtCount = tweetDataContainer[i].retweet_count;
+        timestampArr = tweetDataContainer[i].created_at.split(" ").slice(1, 4);
+        timestamp = timestampArr[0] + " " + timestampArr[1] + " " + timestampArr[2];
 
         matTwitBlock +=     '<div class="row">'
         matTwitBlock +=         '<div class="col s12 m12 l12">'
         matTwitBlock +=             '<div class="card blue-grey darken-1">'
         matTwitBlock +=                 '<div class="card-content white-text">'
-        matTwitBlock +=                     '<span class="card-title">Username</span>' // USERNAME HERE??
+        matTwitBlock +=                     '<span class="card-title">' + timestamp + '</span>' // USERNAME HERE??
         matTwitBlock +=                     '<p>' + fullText + '</p>' // tweetDataContainer TEXT HERE
         matTwitBlock +=                     '<br/>'
         matTwitBlock +=                 '<div style="display: flex; flex-direction: row">'
@@ -432,6 +436,7 @@ function twitterfetch() {
     })
     .then(data => {
         var tweetData = data.data.tweets;
+        console.log(data.data.tweets);
 
         Object.keys(tweetData).forEach(key => {
             tweetDataContainer.push(tweetData[key]);

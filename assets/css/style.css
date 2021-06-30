@@ -65,8 +65,9 @@ main {
 }
 
 #tweet-bar {
-    min-height: 100%;
+    min-height: 500px;
     max-height: 100vh;
+    min-width: 300px;
     overflow: scroll;
 }
 
