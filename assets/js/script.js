@@ -278,8 +278,9 @@ function generateTwitCard() {
     matTwitBlock +=         '<div class="col s12 m12 l12">'
     matTwitBlock +=             '<div class="card blue-grey darken-1">'
     matTwitBlock +=                 '<div class="card-content white-text">'
-    matTwitBlock +=                     '<span class="card-title">Card Title</span>' // USERNAME HERE
-    matTwitBlock +=                     '<p></p>' // tweetDataContainer TEXT HERE
+    matTwitBlock +=                     '<span class="card-title">Card Title</span>' // USERNAME HERE??
+    matTwitBlock +=                     '<p>' + tweetDataContainer[0].full_text + '</p>' // tweetDataContainer TEXT HERE
+    matTwitBlock +=                     '<br/>'
     matTwitBlock +=                 '<div>'
     matTwitBlock +=                     '<a href="#">This is a link</a>' // TWEET LINK HERE
     matTwitBlock +=                 '</div>'
@@ -291,10 +292,9 @@ function generateTwitCard() {
     tweetBar.innerHTML += matTwitBlock;
 }
 
-generateTwitCard();
-
 console.log(tweetBar.innerHTML);
-
+console.log(tweetDataContainer);
+console.log(tweetDataContainer[0]);
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Twitter API Fetcher ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -349,7 +349,10 @@ function twitterfetch() {
 
         Object.keys(tweetData).forEach(key => {
             tweetDataContainer.push(tweetData[key]);
+            console.log(tweetDataContainer[0]);
         });
+        //if button clicked display Tweet
+        generateTwitCard();
     })
 }
 
