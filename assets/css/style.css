@@ -64,6 +64,8 @@ main {
     min-height: 500px;
     display: flex;
     flex-wrap: wrap;
+    max-height: 100vh;
+    overflow: scroll;
 }
 
 #card-space {
