@@ -76,27 +76,27 @@ function genCoinCard(coin){
 
     var name = coin.name;
 
-
-    var coinString = "<p>Name: "+coin.name+"</p>"+
-                    "<p>Symbol: "+coin.symbol+"</p>"+
-                    "<p>Price: "+coin.price+"</p>"+
-                    "<p>Market Cap: "+coin.mktcap+"</p>"+
-                    "<p>All time high: "+coin.ath+"</p>"+
-                    "<p>24H Volume: "+coin.volume+"</p>"+
-                    "<p>Rank: "+coin.rank+"</p>"+
-                    "<p>Supply: "+coin.supply;
+    var coinString = "<p><b>Name:</b> "+coin.name+"</p>"+
+                    "<p><b>Symbol:</b> "+coin.symbol+"</p>"+
+                    "<p><b>Price:</b> $"+(Math.round(coin.price * 100)/100)+"</p>"+
+                    "<p><b>Market Cap:</b> $ "+(Math.round(coin.mktcap * 100)/100)+"</p>"+
+                    "<p><b>All time high ($):</b> "+(Math.round(coin.ath * 100)/100)+"</p>"+
+                    "<p><b>24H Volume ($):</b> "+(Math.round(coin.volume * 100)/100)+"</p>"+
+                    "<p><b>Rank:</b> "+coin.rank+"</p>"+
+                    "<p><b>Supply:</b> "+coin.supply;
 
     var newCoin = document.createElement('div');
-    newCoin.innerHTML = "<div class=\"card\"><div class=\"card-image\"><div id="+ chartTargetId +"></div><a class=\"btn-floating halfway-fab waves-effect waves-light red\"><i class=\"material-icons\">add</i></a></div><div class=\"card-content\"><p>"+coinString+"</p></div></div>";
+    newCoin.classList.add('coin-card')
+    newCoin.innerHTML = "<div class=\"card\"><div class=\"card-image\"><div id="+ chartTargetId +"></div><a class=\"btn-floating halfway-fab waves-effect waves-light red\"><i class=\"material-icons\">add</i></a></div><div class=\"card-content amber lighten-3\"><p>"+coinString+"</p></div></div>";
 
     coinsArea.appendChild(newCoin);
 
     //------ chart addition ----//
     var chartWrapper = document.createElement('div');
-    chartWrapper.classList.add('canvas-wrapper');
+    chartWrapper.classList.add('canvas-wrapper', 'grey', 'darken-3');
     var coinChart = document.createElement('canvas');
+    coinChart.classList.add('white');
     coinChartId = coin.name + '-chart';
-    console.log(coinChartId);
     coinChart.setAttribute('id', coinChartId);
     chartWrapper.append(coinChart);
     

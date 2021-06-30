@@ -50,18 +50,6 @@ main {
     display: inline;
 }
 
-canvas {
-    width: 100%;
-    height: 100%;
-}
-
-.canvas-wrapper {
-    background-color: #FFFFFF;
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto;
-
-}
 
 #main-row {
     margin-bottom: 0;
@@ -81,6 +69,26 @@ canvas {
     flex-wrap: wrap;
 
 }
+
+.coin-card {
+    margin: 20px;
+    font-size: 20px;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+}
+
+.canvas-wrapper {
+    background-color: #FFFFFF;
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+
+}
+
 
 #copyright-bar{
     display: flex;
