@@ -27,7 +27,7 @@ function getCoinList() {
         return response.json();
     }).then(function(info) {
         coins = info;
-        console.log(coins);
+        // console.log(coins);
         info.forEach(coin => {
             data[coin.name] = null;
             data[coin.symbol] = null;
@@ -65,23 +65,25 @@ function makeTermGlossary() {
 }
 
 
-function genCoinCard(coin){
+function genCoinCard(coin, coinIcon){
     //------ chart addition ----//
     // this may cause issues when deleting chart from page, but not sure...
     chartCount++;
     var chartTargetId = 'chart-target' + chartCount;
     // ------- end chart addition ------//
+ 
 
     var coinsArea = document.getElementById('card-space');
 
     var name = coin.name;
 
-    var coinString = "<p><b>Name:</b> "+coin.name+"</p>"+
+    var coinString = "<img class='coin-icon' src=" + coinIcon+"/>" +
+                    "<p><b>Name:</b> "+coin.name+"</p>"+
                     "<p><b>Symbol:</b> "+coin.symbol+"</p>"+
-                    "<p><b>Price:</b> $"+(Math.round(coin.price * 100)/100)+"</p>"+
-                    "<p><b>Market Cap:</b> $ "+(Math.round(coin.mktcap * 100)/100)+"</p>"+
-                    "<p><b>All time high ($):</b> "+(Math.round(coin.ath * 100)/100)+"</p>"+
-                    "<p><b>24H Volume ($):</b> "+(Math.round(coin.volume * 100)/100)+"</p>"+
+                    "<p><b>Price:</b> $"+coin.price.toFixed(2)+"</p>"+
+                    "<p><b>Market Cap:</b> $"+coin.mktcap.toFixed(2)+"</p>"+
+                    "<p><b>All time high:</b> $"+coin.ath.toFixed(2)+"</p>"+
+                    "<p><b>24H Volume:</b> $"+coin.volume.toFixed(2)+"</p>"+
                     "<p><b>Rank:</b> "+coin.rank+"</p>"+
                     "<p><b>Supply:</b> "+coin.supply;
 
@@ -111,7 +113,7 @@ function genCoinCard(coin){
 
 
 searchFormEl.addEventListener("submit", function(event){
-    console.log('activated')
+    // console.log('activated')
     event.preventDefault();
 
 
@@ -145,8 +147,9 @@ searchFormEl.addEventListener("submit", function(event){
                     
                     
                     activeCoins.push(coin.name);
-                    console.log(activeCoins);
-                    genCoinCard(coin);
+                    // console.log(activeCoins);
+                    getCoinIconData(coins[i].name.toLowerCase(), coin)
+                    // genCoinCard(coin);
                     break;
                 }
                 
@@ -156,7 +159,7 @@ searchFormEl.addEventListener("submit", function(event){
         
 
         // return coin;
-        console.log(coin); 
+        // console.log(coin); 
         queryEl.value = '';
         
     }
@@ -167,6 +170,22 @@ searchFormEl.addEventListener("submit", function(event){
 
 
 })
+// ------- Get list of coin icons ------------ //
+function getCoinIconData(coinName, coin) {
+    var coinIcon;
+    fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=' + coinName).then(function(response) {
+        return response.json();
+    }).then(function(info) {
+        coinIcon = info[0].image;
+        console.log(coinIcon)
+        genCoinCard(coin, coinIcon)
+
+    });
+
+}
+
+
+// ------- END get list of coin ----------- //
 // ------- Chart data and Make chart ----------- //
 function getChartData(coinName, chartId) {
     
@@ -176,7 +195,7 @@ function getChartData(coinName, chartId) {
     fetch('https://api.coingecko.com/api/v3/coins/'+ coinName + '/market_chart?vs_currency=usd&days=30&interval=daily').then(function(response) {
         return response.json();
     }).then(function(info) {
-        console.log(info);
+        // console.log(info);
         for (i = 0; i < info.prices.length; i++){
             day.push(info.prices[i][0]);
             price.push(info.prices[i][1]);
@@ -213,7 +232,11 @@ function makeChart(price, day, coinName, chartId){
                 },
                 title: {
                     display: true,
-                    text: coinName + ' price (last 30 days)',
+                    text: coinName + ' (past 30 days)',
+                    font: {
+                        size: 20,
+                        weight: 800,
+                    }
                 }
             },
             scales: {
@@ -290,11 +313,11 @@ function twitterfetch() {
     }
 })
     .then(response => {
-        console.log(response);
+        // console.log(response);
         return response.json();
     })
     .then(data => {
-        console.log(data.data.tweets);
+        // console.log(data.data.tweets);
     })
 }
 twitterfetch();

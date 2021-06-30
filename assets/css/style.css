@@ -72,6 +72,10 @@ main {
 
 }
 
+.coin-icon {
+    width: 100px;
+    height: 100px;
+}
 .coin-card {
     margin: 20px;
     font-size: 20px;
