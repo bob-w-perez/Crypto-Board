@@ -102,9 +102,9 @@ function genCoinCard(coin, coinIcon, editCoinName){
 
     //------ chart addition ----//
     var chartWrapper = document.createElement('div');
-    chartWrapper.classList.add('canvas-wrapper', 'grey'); //  'darken-3'
+    chartWrapper.classList.add('canvas-wrapper','light-blue'); //  'darken-3'
     var coinChart = document.createElement('canvas');
-    coinChart.classList.add('grey');
+    coinChart.classList.add('chart-backround');
     coinChartId = coin.name + '-chart';
     coinChart.setAttribute('id', coinChartId);
     chartWrapper.append(coinChart);

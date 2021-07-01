@@ -224,6 +224,10 @@ canvas {
     margin: 0;
 }
 
+.chart-backround{
+    background-color: '#e8eaf6';
+}
+
 #copyright-bar{
     display: flex;
     padding: 0 20px;
