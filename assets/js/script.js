@@ -309,13 +309,13 @@ function generateTwitCard() {
         timestampArr = tweetDataContainer[i].created_at.split(" ").slice(1, 4);
         timestamp = timestampArr[0] + " " + timestampArr[1] + " " + timestampArr[2];
 
-        matTwitBlock +=     '<div class="row">'
-        matTwitBlock +=         '<div class="col s12 m12 l12">'
-        matTwitBlock +=             '<div class="card blue-grey darken-1">'
-        matTwitBlock +=                 '<div class="card-content white-text">'
-        matTwitBlock +=                     '<span class="card-title">' + timestamp + '</span>' // USERNAME HERE??
-        matTwitBlock +=                     '<p>' + fullText + '</p>' // tweetDataContainer TEXT HERE
-        matTwitBlock +=                     '<br/>'
+        matTwitBlock += '<div class="row">'
+        matTwitBlock +=     '<div class="col s12 m12 l12">'
+        matTwitBlock +=         '<div class="card" style="background-color: #00acee">'
+        matTwitBlock +=             '<div class="card-content white-text">'
+        matTwitBlock +=                 '<span class="card-title">' + timestamp + '</span>' // USERNAME HERE??
+        matTwitBlock +=                 '<p>' + fullText + '</p>' // tweetDataContainer TEXT HERE
+        matTwitBlock +=                 '<br/>'
         matTwitBlock +=                 '<div style="display: flex; flex-direction: row">'
         matTwitBlock +=                     '<p style="padding: 5px 20px 5px 0">' + "♥ " + favCount + '</p>' // FAV COUNT
         matTwitBlock +=                     '<p style="padding: 5px 20px 5px 0">' + "❝ " + quoteCount + '</p>' // QUOTE COUNT
