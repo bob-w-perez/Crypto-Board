@@ -89,7 +89,7 @@ function genCoinCard(coin, coinIcon){
                     "<p><b>24H Volume:</b> $"+coin.volume.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
                     "<p><b>Rank:</b> "+coin.rank+"</p>"+
                     "<p><b>Supply:</b> "+coin.supply.toLocaleString()+"</p>"+
-                    '<div class="card-buttons"><a class="waves-effect waves-light btn-small"><i class="material-icons right">chat</i>Twitter Feed</a><a data-name='+ coin.name +' class="close-button waves-effect waves-light btn-small">Close</a>';
+                    '<div class="card-buttons"><a data-name='+ coin.name +' class="tweet-button waves-effect waves-light btn-small"><i class="material-icons right">chat</i>Twitter Feed</a><a data-name='+ coin.name +' class="close-button waves-effect waves-light btn-small">Close</a>';
 
     var newCoin = document.createElement('div');
     newCoin.classList.add('coin-card')
@@ -128,7 +128,6 @@ function retrieveActiveCoins() {
     if (storedCoins){
         storedCoins.forEach(coin => {
             var newCoin = coin.toLowerCase();
-            console.log(newCoin)
 
             addNewCoin(newCoin);
         })
@@ -141,7 +140,6 @@ searchFormEl.addEventListener("submit", function(event){
     // console.log('activated')
     event.preventDefault();
     var newCoin = queryEl.value.toLowerCase();
-    console.log(newCoin)
     addNewCoin(newCoin);
     queryEl.value = '';
 })
@@ -178,7 +176,6 @@ function addNewCoin(newCoin) {
                     
                     
                     activeCoins.push(coin.name);
-                    console.log(activeCoins);
                     storeActiveCoins(activeCoins);
                     getCoinIconData(coins[i].name.toLowerCase(), coin)
                     // genCoinCard(coin);
@@ -394,7 +391,7 @@ var endPointDateData = {
 }
 
 // ------- END jQuery initializations ---------- //     
-// ------- close button event listener  ---------- //     
+// ------- close button AND Twitter button  event listener  ---------- //     
 
 $(document).on('click','.close-button',function() {
     $(this).closest("div.card").remove();
@@ -402,6 +399,25 @@ $(document).on('click','.close-button',function() {
     storeActiveCoins(activeCoins);
 
 });
+
+$(document).on('click','.tweet-button',function() {
+    // $(this).closest("div.card").remove();
+    // activeCoins.splice(activeCoins.indexOf(this.dataset.name),1);
+    // storeActiveCoins(activeCoins);
+    if (document.getElementById('tweet-bar').classList.contains('hidden')) {
+        console.log('TEST')
+        $('#tweet-bar').removeClass('hidden');
+        $('#main-row').addClass('tweet-shown');
+    } else if(!document.getElementById('tweet-bar').classList.contains('hidden')) {
+        $('#tweet-bar').addClass('hidden');
+        $('#main-row').removeClass('tweet-shown');
+    }
+
+
+
+});
+
+
 // ------- END close button listener-------- //
 // ------- Twitter Feed Fetch -------- //
 
