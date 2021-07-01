@@ -95,7 +95,7 @@ function genCoinCard(coin, coinIcon){
     newCoin.classList.add('coin-card')
     newCoin.innerHTML = "<div class=\"card\"><div class=\"card-image\"><div id="+ chartTargetId +"></div><a class=\"btn-floating btn-large halfway-fab waves-effect waves-light white\"><img src="+ coinIcon+ "></a></div><div class=\"card-content amber lighten-3\"><p>"+coinString+"</p></div></div>";
 
-    coinsArea.appendChild(newCoin);
+    $(coinsArea).prepend(newCoin);
 
     //------ chart addition ----//
     var chartWrapper = document.createElement('div');
