@@ -17,6 +17,7 @@ function init() {
     chartCount = 0;
     getCoinList();
     makeTermGlossary();
+    tickerBar();
     
 }
 
@@ -102,9 +103,9 @@ function genCoinCard(coin, coinIcon, editCoinName){
 
     //------ chart addition ----//
     var chartWrapper = document.createElement('div');
-    chartWrapper.classList.add('canvas-wrapper', 'grey'); //  'darken-3'
+    chartWrapper.classList.add('canvas-wrapper', 'light-blue'); //  'darken-3'
     var coinChart = document.createElement('canvas');
-    coinChart.classList.add('grey');
+    coinChart.classList.add('light-blue');
     coinChartId = coin.name + '-chart';
     coinChart.setAttribute('id', coinChartId);
     chartWrapper.append(coinChart);
@@ -303,9 +304,20 @@ function makeChart(price, day, coinName, chartId){
 }
 
 // ------- END Chart data and Make chart ----------- //
-
-
-
+function tickerBar() {
+    var tickerInfo = [];
+    fetch('https://api.coingecko.com/api/v3/search/trending').then(function(response) {
+        return response.json();
+    }).then(function(info) {
+        console.log(info.coins[3].item.name)
+        for (var i = 0; i < 7; i++){
+            var tickerEl = $('<div>');
+            tickerEl.addClass('ticker__item');
+            tickerEl.text(info.coins[i].item.name + ' - ' + info.coins[i].item.symbol + ' ');
+            $('#ticker').append(tickerEl);
+        }
+    });
+}
 // -------------------------------------------------- TWITTER CARD ------------------------------------------------ //
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Card Generation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
