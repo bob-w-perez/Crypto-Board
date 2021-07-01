@@ -8,22 +8,22 @@
     <link type="text/css" rel="stylesheet" href="./assets/css/materialize.css"  media="screen,projection"/>  
     <link rel="stylesheet" href="./assets/css/style.css"/>  
     <!-- ADD title -->
-    <title>Document</title>
+    <title>CoinBASED</title>
     <link rel="icon" type="img/png" href="./assets/images/favicon-1.png"/>
 
 </head>
 <body>
     <header>
         <nav>
-            <div class="nav-wrapper amber darken-1">
-                <a href="#" class="brand-logo black-text center">Logo</a>
-                <ul id="nav-mobile" class="left">
+            <div class="nav-wrapper valign-wrapper">
+                <ul id="nav-mobile" class="">
                 <li><a href="#" data-target="slide-out-term" class="sidenav-trigger"><i id='term-icon-2' class="material-icons prefix">menu</i>Crypto Term Glossary</a></li>
                 </ul>
+                <img src="./assets/images/hands_4.png" id="logo" class="center" />
             </div>
         </nav>
 
-        <ul id="slide-out-term" class="sidenav" style="width:500px">
+        <ul id="slide-out-term" class="sidenav" style="width:400px">
             <li><div class="user-view">
                 <div class="background">
                 <img id='term-background' src="./assets/images/cryptocurrency-bground-1.jpg">
@@ -43,16 +43,18 @@
     </header>
 
     <main>
-        <div id= "hero" class="section grey darken-3 z-depth-1">
+
+        <div id= "hero" class="section z-depth-1 blue darken-3">
             <div class="container">
-                <h1 id="main-title" class="center">CoinBASED</h1>
+                <h1 id="main-title" class="center"><span id="coin-span">Coin</span><span id="based-span">BASED</span></h1>
+
                 <div class="row">
                     <div class="col s12">
                       <div id="form-wrapper" class="row">
                         <form id="search-form">
                             <div id="input-wrapper" class="input-field col s12">
                                 <i class="material-icons prefix">toll</i>
-                                <label for="autocomplete-input">Search Coin</label>
+                                <label id="input-label" for="autocomplete-input">Search Coin</label>
                                 <input type="text" id="autocomplete-input" class="autocomplete">
                                 
                                 <button id="search-submit-btn" class="btn waves-effect waves-light" type="submit" name="action">Submit
@@ -68,7 +70,7 @@
 
         <div class="section no-pad">
             <div id="main-row" class="row">
-                <div id="tweet-bar" class="light-blue lighten-2 hidden">
+                <div id="tweet-bar" class="hidden">
                 </div>
                 <div id="card-space" class="purple lighten-4">
                 </div>
@@ -76,8 +78,8 @@
         </div>
     </main>
 
-    <footer class="page-footer amber darken-1">
-        <div class="container">
+    <footer class="page-footer blue darken-3">
+        <div id="pre-footer" class="container">
             <div class="row">
                 <div class="col s6">
                     <p>Some stuff</p>
