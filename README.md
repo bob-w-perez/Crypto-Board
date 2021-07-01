@@ -1,17 +1,28 @@
 # project-1_RDB
 Project 1 for GT Bootcamp
 
+Created by Robert Perez, Brooks Gunn, and David Ludwik
+
+
+
+
 Welcome to CoinBASED, your one stop shop for the latest cryptocurrency data on your favorite coins!
 
 Simply enter the coin of interest in the search bar and a card containing relevant trading data, including 30 day price history chart, pops up in the card area. Hover over the chart to get more precise data on the coin's price history. Each card's twitter button pulls up a bar on the left containing a selection of recent tweets about the relevant coin. Close the card at any time to stay focused on your favorite coins. Upon reopening the page, all previous coins are retained. 
 
+
+
 Check it out yourself!
-![Here's the link](./index.html)
+![Link in folder](./index.html)
+![Link through github pages](https://worldunfurled.github.io/project-1_RDB/)
 
-![pic in action](./assets/pics/schedule.png)
+Screenshots:
+![Without twitter bar](assets/images/coinBASED_no_twitter.png)
+![Twitter bar open](assets/images/coinBASED_with_twitter.png)
 
 
-Created by Robert Perez, Brooks Gunn, and David Ludwik
+
+High level technical explanation:
 
 Crypto data for every supported coin is pulled from coinpaprika upon page load and stored in a data object. This is done in order to minimize latency of card creation. Coin icons are pulled from the coingecko api. Charts are created with the coingecko api and chart.js library. Once a coin name is entered, the crypto data object is searched through, and relevant data is then pulled used to populate the crypto card. Each card is dynamically generated and inserted into the parent card-space div. At the same time an array of active coin names is updated to include the new coin, then the array is re-saved in local storage. 
 
