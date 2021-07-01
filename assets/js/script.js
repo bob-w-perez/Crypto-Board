@@ -29,6 +29,7 @@ function getCoinList() {
         return response.json();
     }).then(function(info) {
         coins = info;
+        console.log(coins)
         info.forEach(coin => {
             data[coin.name] = null;
             data[coin.symbol] = null;
@@ -194,6 +195,7 @@ function getCoinIconData(coinName, coin) {
     fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=' + coinName).then(function(response) {
         return response.json();
     }).then(function(info) {
+        console.log(info)
         coinIcon = info[0].image;
         genCoinCard(coin, coinIcon);
 
