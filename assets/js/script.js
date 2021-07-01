@@ -82,10 +82,10 @@ function genCoinCard(coin, coinIcon){
     var coinString = //"<img class='coin-icon' src=" + coinIcon+"/>" +
                     "<p><b>Name:</b> "+coin.name+"</p>"+
                     "<p><b>Symbol:</b> "+coin.symbol+"</p>"+
-                    "<p><b>Price:</b> $"+coin.price.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
-                    "<p><b>Market Cap:</b> $"+coin.mktcap.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
-                    "<p><b>All time high:</b> $"+coin.ath.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
-                    "<p><b>24H Volume:</b> $"+coin.volume.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
+                    "<p><b>Price:</b> $"+coin.price.toLocaleString('en-US', {maximumFractionDigits: 2})+"</p>"+
+                    "<p><b>Market Cap:</b> $"+coin.mktcap.toLocaleString('en-US', {maximumFractionDigits: 2})+"</p>"+
+                    "<p><b>All time high:</b> $"+coin.ath.toLocaleString('en-US', {maximumFractionDigits: 2})+"</p>"+
+                    "<p><b>24H Volume:</b> $"+coin.volume.toLocaleString('en-US', {maximumFractionDigits: 2})+"</p>"+
                     "<p><b>Rank:</b> "+coin.rank+"</p>"+
                     "<p><b>Supply:</b> "+coin.supply.toLocaleString()+"</p>"+
                     '<div class="card-buttons"><a class="waves-effect waves-light btn-small"><i class="material-icons right">chat</i>Twitter Feed</a><a data-name='+ coin.name +' class="close-button waves-effect waves-light btn-small">Close</a>';
