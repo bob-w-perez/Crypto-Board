@@ -1,13 +1,25 @@
 
 body {
-    display: flex;
+    display: grid;
     min-height: 100vh;
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        'header'
+        'main'
+        'footer';
+}
+
+header {
+    grid-area: 'header';
 }
 
 main {
-    flex: 1 0 auto;
     margin: 0;
+    grid-area: 'main';
+}
+
+footer {
+    grid-area: 'footer';
 }
 
 /* this isnt working to fit image in sidenav*/
@@ -18,7 +30,7 @@ main {
 .sidenav-trigger {
     color: black;
     font-weight: 700;
-    display: inline;
+    display: inline !important;
 }
 #term-glossary {
     padding-left: 20px;
@@ -79,7 +91,9 @@ main {
 
 #main-row {
     margin-bottom: 0;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: 'tweet card';
 }
 
 #main-title {
@@ -91,12 +105,14 @@ main {
     max-height: 100vh;
     min-width: 300px;
     overflow: scroll;
+    grid-area: 'tweet';
 }
 
 #card-space {
     min-height: 100vh;
     display: flex;
     flex-wrap: wrap;
+    grid-area: 'card';
 }
 
 
@@ -136,6 +152,31 @@ canvas {
     padding: 0 20px;
     width: 100vw;
     justify-content: space-between;
+}
+
+
+@media screen and (max-width: 700px){
+
+    #main-row {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    #main-title {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    #tweet-bar {
+        min-height: 600px;
+        max-height: 600px;
+
+        position: sticky;
+        bottom: -60vh;
+        z-index: 5;
+        border-top: 9px solid darkgray;
+    }
+
 }
 
 /*---------------------------------------------------*/
