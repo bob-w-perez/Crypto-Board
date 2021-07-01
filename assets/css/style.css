@@ -22,6 +22,13 @@ footer {
     grid-area: 'footer';
 }
 
+.hero{
+    height: 25vh;
+}
+.sub-hero{
+    height: 10hv;
+}
+
 /* this isnt working to fit image in sidenav*/
 #term-background {
     object-fit: cover;
@@ -82,6 +89,7 @@ footer {
 #autocomplete-input{
     width: 30vw;
     margin-right: 50px;
+    color: white;
 }
 
 #search-submit-btn {
@@ -101,7 +109,9 @@ footer {
 }
 
 #main-title {
-    margin: 2em;
+    margin: 1em;
+    margin-bottom: 0.5em;
+    color: whitesmoke;
 }
 
 #tweet-bar {
