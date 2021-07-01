@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Croissant+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap');
 
 body {
     display: grid;
@@ -84,6 +86,7 @@ footer {
 
 #input-wrapper {
     width: fit-content;
+    color: white;
 }
 
 #autocomplete-input{
@@ -94,8 +97,12 @@ footer {
 
 #search-submit-btn {
     display: inline;
+    background-color: #D4AF37;
 }
 
+#hero {
+    background-color: #2b50c8;
+}
 
 #main-row {
     margin-bottom: 0;
@@ -112,6 +119,15 @@ footer {
     margin: 1em;
     margin-bottom: 0.5em;
     color: whitesmoke;
+}
+
+#coin-span {
+    font-family: 'Croissant One';
+}
+
+#based-span {
+    font-family: 'Croissant One';
+    border-bottom: 6px solid #D4AF37;
 }
 
 #tweet-bar {
