@@ -9,6 +9,7 @@ body {
         'header'
         'main'
         'footer';
+    background-color: #D4AF37;
 }
 
 header {
@@ -133,7 +134,7 @@ footer {
     min-height: 500px;
     max-height: 100vh;
     min-width: 300px;
-    overflow: scroll;
+    overflow-y: scroll;
     grid-area: 'tweet';
     background-color: #D4AF37;
 }
