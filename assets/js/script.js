@@ -84,10 +84,10 @@ function genCoinCard(coin, coinIcon){
     var coinString = //"<img class='coin-icon' src=" + coinIcon+"/>" +
                     "<p><b>Name:</b> "+coin.name+"</p>"+
                     "<p><b>Symbol:</b> "+coin.symbol+"</p>"+
-                    "<p><b>Price:</b> $"+coin.price.toLocaleString('en-US', {maximumFractionDigits: 2})+"</p>"+
-                    "<p><b>Market Cap:</b> $"+coin.mktcap.toLocaleString('en-US', {maximumFractionDigits: 2})+"</p>"+
-                    "<p><b>All time high:</b> $"+coin.ath.toLocaleString('en-US', {maximumFractionDigits: 2})+"</p>"+
-                    "<p><b>24H Volume:</b> $"+coin.volume.toLocaleString('en-US', {maximumFractionDigits: 2})+"</p>"+
+                    "<p><b>Price:</b> $"+coin.price.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
+                    "<p><b>Market Cap:</b> $"+coin.mktcap.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
+                    "<p><b>All time high:</b> $"+coin.ath.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
+                    "<p><b>24H Volume:</b> $"+coin.volume.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
                     "<p><b>Rank:</b> "+coin.rank+"</p>"+
                     "<p><b>Supply:</b> "+coin.supply.toLocaleString()+"</p>"+
                     '<div class="card-buttons"><a data-name='+ coin.name +' class="tweet-button waves-effect waves-light btn-small"><i class="material-icons right">chat</i>Twitter Feed</a><a data-name='+ coin.name +' class="close-button waves-effect waves-light btn-small">Close</a>';
@@ -158,7 +158,7 @@ function addNewCoin(newCoin) {
             if(coins[i].name.toLowerCase() === query || coins[i].symbol.toLowerCase() === query){
                 if(!activeCoins.includes(coins[i].name)){
                     
-
+                    console.log(coins[i])
                     coin.name = coins[i].name;
                     coin.symbol = coins[i].symbol;
                     coin.price = coins[i].quotes.USD.price;
@@ -192,15 +192,26 @@ function addNewCoin(newCoin) {
 // ------- Get list of coin icons ------------ //
 function getCoinIconData(coinName, coin) {
     var coinIcon;
+    coinName = coinName.replace(' ', '-');
+    if (coinName == "binance-coin") {
+        coinName = "binancecoin";
+    } else if (coinName == 'xrp') {
+        coinName = 'ripple';
+    }
+    console.log(coinName)
+
     fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=' + coinName).then(function(response) {
         return response.json();
     }).then(function(info) {
         console.log(info)
-        coinIcon = info[0].image;
-        genCoinCard(coin, coinIcon);
-
+        if (info.length == 0) {
+            coinIcon = './assets/images/default-coin.png';
+            genCoinCard(coin, coinIcon);
+        } else {
+            coinIcon = info[0].image;
+            genCoinCard(coin, coinIcon);
+        }
     });
-
 }
 
 
