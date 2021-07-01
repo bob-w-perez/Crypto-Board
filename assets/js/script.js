@@ -252,8 +252,9 @@ function makeChart(price, day, coinName, chartId){
                     text: coinName + ' (past 30 days)',
                     color: '#FFFFFF',
                     font: {
+                        family: 'Inter',
                         size: 20,
-                        weight: 800,
+                        weight: 400,
                     }
                 }
             },
