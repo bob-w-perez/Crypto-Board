@@ -89,11 +89,11 @@ function genCoinCard(coin, coinIcon){
                     "<p><b>24H Volume:</b> $"+coin.volume.toLocaleString('en-US', {maximumFractionDigits: 2})+"</p>"+
                     "<p><b>Rank:</b> "+coin.rank+"</p>"+
                     "<p><b>Supply:</b> "+coin.supply.toLocaleString()+"</p>"+
-                    '<div class="card-buttons"><a data-name='+ coin.name +' class="tweet-button waves-effect waves-light btn-small"><i class="material-icons right">chat</i>Twitter Feed</a><a data-name='+ coin.name +' class="close-button waves-effect waves-light btn-small">Close</a>';
+                    '<div class="card-buttons"><a data-name='+ coin.name +' class="tweet-button waves-effect waves-light btn-small blue lighten-2"><i class="material-icons right">chat</i>Twitter Feed</a><a data-name='+ coin.name +' class="close-button waves-effect waves-light btn-small red darken-4">Close</a>';
 
     var newCoin = document.createElement('div');
     newCoin.classList.add('coin-card')
-    newCoin.innerHTML = "<div class=\"card\"><div class=\"card-image\"><div id="+ chartTargetId +"></div><a class=\"btn-floating btn-large halfway-fab waves-effect waves-light white\"><img src="+ coinIcon+ "></a></div><div class=\"card-content amber lighten-3\"><p>"+coinString+"</p></div></div>";
+    newCoin.innerHTML = "<div class=\"card\"><div class=\"card-image\"><div id="+ chartTargetId +"></div><a class=\"btn-floating btn-large halfway-fab waves-effect waves-light white\"><img src="+ coinIcon+ "></a></div><div id=\"card-bottom\" class=\"card-content\"><p>"+coinString+"</p></div></div>";
 
     $(coinsArea).prepend(newCoin);
 
@@ -252,8 +252,9 @@ function makeChart(price, day, coinName, chartId){
                     text: coinName + ' (past 30 days)',
                     color: '#FFFFFF',
                     font: {
+                        family: 'Inter',
                         size: 20,
-                        weight: 800,
+                        weight: 400,
                     }
                 }
             },
@@ -309,13 +310,13 @@ function generateTwitCard() {
         timestampArr = tweetDataContainer[i].created_at.split(" ").slice(1, 4);
         timestamp = timestampArr[0] + " " + timestampArr[1] + " " + timestampArr[2];
 
-        matTwitBlock +=     '<div class="row">'
-        matTwitBlock +=         '<div class="col s12 m12 l12">'
-        matTwitBlock +=             '<div class="card blue-grey darken-1">'
-        matTwitBlock +=                 '<div class="card-content white-text">'
-        matTwitBlock +=                     '<span class="card-title">' + timestamp + '</span>' // USERNAME HERE??
-        matTwitBlock +=                     '<p>' + fullText + '</p>' // tweetDataContainer TEXT HERE
-        matTwitBlock +=                     '<br/>'
+        matTwitBlock += '<div class="row">'
+        matTwitBlock +=     '<div class="col s12 m12 l12">'
+        matTwitBlock +=         '<div class="card" style="background-color: #00acee">'
+        matTwitBlock +=             '<div class="card-content white-text">'
+        matTwitBlock +=                 '<span class="card-title">' + timestamp + '</span>' // USERNAME HERE??
+        matTwitBlock +=                 '<p>' + fullText + '</p>' // tweetDataContainer TEXT HERE
+        matTwitBlock +=                 '<br/>'
         matTwitBlock +=                 '<div style="display: flex; flex-direction: row">'
         matTwitBlock +=                     '<p style="padding: 5px 20px 5px 0">' + "♥ " + favCount + '</p>' // FAV COUNT
         matTwitBlock +=                     '<p style="padding: 5px 20px 5px 0">' + "❝ " + quoteCount + '</p>' // QUOTE COUNT
