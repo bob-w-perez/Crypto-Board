@@ -104,9 +104,9 @@ function genCoinCard(coin, coinIcon, editCoinName){
 
     //------ chart addition ----//
     var chartWrapper = document.createElement('div');
-    chartWrapper.classList.add('canvas-wrapper', 'light-blue'); //  'darken-3'
+    chartWrapper.classList.add('canvas-wrapper', 'grey', 'lighten-2'); //  'darken-3'
     var coinChart = document.createElement('canvas');
-    coinChart.classList.add('light-blue');
+    coinChart.classList.add('grey', 'lighten-2');
     coinChartId = coin.name + '-chart';
     coinChart.setAttribute('id', coinChartId);
     chartWrapper.append(coinChart);
@@ -278,7 +278,7 @@ function makeChart(price, day, coinName, chartId){
                 title: {
                     display: true,
                     text: coinName + ' (past 30 days)',
-                    color: '#FFFFFF',
+                    color: 'black',
                     font: {
                         family: 'Inter',
                         size: 20,
@@ -298,7 +298,7 @@ function makeChart(price, day, coinName, chartId){
                         callback: function(value, index, values) {
                             return '$' + value;
                         },
-                        color: '#FFFFFF',
+                        color: 'black',
                         precision: 5,
                     }
                 }
