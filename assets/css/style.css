@@ -178,6 +178,14 @@ canvas {
 
 }
 
+.chart-error {
+    height: 175px;
+    text-align: center;
+    font-weight: 600;
+    padding-top: 65px;
+    color: white;
+    margin: 0;
+}
 
 #copyright-bar{
     display: flex;

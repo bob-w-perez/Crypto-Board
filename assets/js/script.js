@@ -29,7 +29,6 @@ function getCoinList() {
         return response.json();
     }).then(function(info) {
         coins = info;
-        console.log(coins)
         info.forEach(coin => {
             data[coin.name] = null;
             data[coin.symbol] = null;
@@ -68,7 +67,7 @@ function makeTermGlossary() {
 }
 
 
-function genCoinCard(coin, coinIcon){
+function genCoinCard(coin, coinIcon, editCoinName){
     //------ chart addition ----//
     // this may cause issues when deleting chart from page, but not sure...
     chartCount++;
@@ -109,7 +108,7 @@ function genCoinCard(coin, coinIcon){
     
     var chartTarget = document.getElementById(chartTargetId);
     chartTarget.append(chartWrapper);
-    getChartData(coin.name.toLowerCase(), coinChartId);
+    getChartData(editCoinName, coinChartId);
     // ------- end chart addition ------//
 
 
@@ -158,7 +157,6 @@ function addNewCoin(newCoin) {
             if(coins[i].name.toLowerCase() === query || coins[i].symbol.toLowerCase() === query){
                 if(!activeCoins.includes(coins[i].name)){
                     
-                    console.log(coins[i])
                     coin.name = coins[i].name;
                     coin.symbol = coins[i].symbol;
                     coin.price = coins[i].quotes.USD.price;
@@ -197,6 +195,8 @@ function getCoinIconData(coinName, coin) {
         coinName = "binancecoin";
     } else if (coinName == 'xrp') {
         coinName = 'ripple';
+    } else if (coinName == 'terra') {
+        coinName = 'terra-luna'
     }
     console.log(coinName)
 
@@ -206,10 +206,10 @@ function getCoinIconData(coinName, coin) {
         console.log(info)
         if (info.length == 0) {
             coinIcon = './assets/images/default-coin.png';
-            genCoinCard(coin, coinIcon);
+            genCoinCard(coin, coinIcon, coinName);
         } else {
             coinIcon = info[0].image;
-            genCoinCard(coin, coinIcon);
+            genCoinCard(coin, coinIcon, coinName);
         }
     });
 }
@@ -222,20 +222,26 @@ function getChartData(coinName, chartId) {
     var price = [];
     var day = [];
 
+ 
     fetch('https://api.coingecko.com/api/v3/coins/'+ coinName + '/market_chart?vs_currency=usd&days=30&interval=daily').then(function(response) {
+        if (response.ok){
         return response.json();
+        }
     }).then(function(info) {
-        // console.log(info);
+        
         for (i = 0; i < info.prices.length; i++){
             day.push(info.prices[i][0]);
-            price.push(info.prices[i][1]);
-           
+            price.push(info.prices[i][1]);           
         };
         return [price, day, (coinName[0].toUpperCase()+coinName.substring(1))];
+
     }).then(function(chartData){
         makeChart(chartData[0], chartData[1], chartData[2], chartId);
-    })
-    
+    }).catch(function(error) {
+        $('#'+chartId).parent().append($('<p>').text('No chart to display').addClass('chart-error'));
+        $('#'+chartId).remove();
+    });
+
     
 }
 
@@ -518,8 +524,6 @@ $(document).on('click','.tweet-button',function() {
         matTwitBlock = ""
         currentHashtag = this.dataset.name;
         twitterfetch(this.dataset.name);
-       
-
     }
 
 
