@@ -104,6 +104,17 @@ footer {
     color: white;
 }
 
+
+
+.input-field input:focus + i {
+    color: #ffc107 !important ;
+}
+
+.input-field input:focus {
+    border-bottom: 1px solid #ffc107 !important ;
+    box-shadow: 0 1px 0 0 #ffc107 !important ;
+  }
+
 #autocomplete-input{
     width: 30vw;
     margin-right: 50px;

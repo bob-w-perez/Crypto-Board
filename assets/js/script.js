@@ -8,7 +8,7 @@ const paprikaCoinList = [];
 const coinGeckoList = [];
 
 // data for search autocomplete
-var data = { };
+var data = {Ripple:null, };
 
 var chartCount;
 
@@ -45,7 +45,8 @@ function makeTermGlossary() {
     fetch('https://api.coinpaprika.com/v1/tags').then(function(response) {
         return response.json();
     }).then(function(info) {
-        // console.log(info);
+        console.log(info);
+        info.sort((a, b) => (a.name > b.name) ? 1 : -1)
         info.forEach(term => {
             let termItem = document.createElement('li');
             let itemHeadCollapse = document.createElement('div');
@@ -200,7 +201,11 @@ function getCoinIconData(coinName, coin) {
     } else if (coinName == 'xrp') {
         coinName = 'ripple';
     } else if (coinName == 'terra') {
-        coinName = 'terra-luna'
+        coinName = 'terra-luna';
+    } else if (coinName == "polygon") {
+        coinName = 'matic-network';
+    } else if (coinName == 'theta') {
+        coinName = 'theta-token';
     }
     console.log(coinName)
 
@@ -309,7 +314,6 @@ function tickerBar() {
     fetch('https://api.coingecko.com/api/v3/search/trending').then(function(response) {
         return response.json();
     }).then(function(info) {
-        console.log(info.coins[3].item.name)
         for (var i = 0; i < 7; i++){
             var tickerEl = $('<div>');
             tickerEl.addClass('ticker__item');
@@ -487,7 +491,11 @@ searchFormEl.addEventListener("submit", function(event){
     // console.log('activated')
     event.preventDefault();
     var newCoin = queryEl.value.toLowerCase();
-    addNewCoin(newCoin);
+    if (newCoin == 'ripple') {
+        addNewCoin('xrp')
+    } else {
+        addNewCoin(newCoin);
+    }
     queryEl.value = '';
 })
 

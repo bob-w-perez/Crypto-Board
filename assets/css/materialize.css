@@ -6243,7 +6243,7 @@ input[type=tel]:not(.browser-default):focus:not([readonly]) + label,
 input[type=number]:not(.browser-default):focus:not([readonly]) + label,
 input[type=search]:not(.browser-default):focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
-  color: #26a69a;
+  color: #ffc107 ;
 }
 
 input:not([type]):focus.valid ~ label,
@@ -6259,7 +6259,7 @@ input[type=tel]:not(.browser-default):focus.valid ~ label,
 input[type=number]:not(.browser-default):focus.valid ~ label,
 input[type=search]:not(.browser-default):focus.valid ~ label,
 textarea.materialize-textarea:focus.valid ~ label {
-  color: #4CAF50;
+  color: #ffc107 ;
 }
 
 input:not([type]):focus.invalid ~ label,
@@ -6275,7 +6275,7 @@ input[type=tel]:not(.browser-default):focus.invalid ~ label,
 input[type=number]:not(.browser-default):focus.invalid ~ label,
 input[type=search]:not(.browser-default):focus.invalid ~ label,
 textarea.materialize-textarea:focus.invalid ~ label {
-  color: #F44336;
+  color: #ffc107 ;
 }
 
 input:not([type]).validate + label,
@@ -6444,7 +6444,7 @@ input[type=search]:not(.browser-default):focus.valid ~ .helper-text:after,
 textarea.materialize-textarea.valid ~ .helper-text:after,
 textarea.materialize-textarea:focus.valid ~ .helper-text:after, .select-wrapper.valid ~ .helper-text:after {
   content: attr(data-success);
-  color: #4CAF50;
+  color: #ffc107 ;
 }
 
 input:not([type]).invalid ~ .helper-text:after,
@@ -6585,7 +6585,7 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
 }
 
 .input-field .prefix.active {
-  color: #26a69a;
+  color: #ffc107 ;
 }
 
 .input-field .prefix ~ input,
@@ -6639,13 +6639,13 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
   border: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
-  color: #444;
+  color: #ffc107 ;
 }
 
 .input-field input[type=search]:focus:not(.browser-default) + label i,
 .input-field input[type=search]:focus:not(.browser-default) ~ .mdi-navigation-close,
 .input-field input[type=search]:focus:not(.browser-default) ~ .material-icons {
-  color: #444;
+  color: #ffc107 ;
 }
 
 .input-field input[type=search] + .label-icon {
@@ -7190,7 +7190,7 @@ select {
 }
 
 .select-wrapper input.select-dropdown:focus {
-  border-bottom: 1px solid #26a69a;
+  border-bottom: 1px solid #ffc107 ;
 }
 
 .select-wrapper .caret {
