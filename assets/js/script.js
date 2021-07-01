@@ -78,14 +78,17 @@ function genCoinCard(coin, coinIcon, editCoinName){
 
     var coinsArea = document.getElementById('card-space');
 
-    var name = coin.name;
+    var fractionDigits = 2;
+    if(coin.price < 1){
+        fractionDigits = 5;
+    }
 
     var coinString = //"<img class='coin-icon' src=" + coinIcon+"/>" +
                     "<p><b>Name:</b> "+coin.name+"</p>"+
                     "<p><b>Symbol:</b> "+coin.symbol+"</p>"+
-                    "<p><b>Price:</b> $"+coin.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})+"</p>"+
+                    "<p><b>Price:</b> $"+coin.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: fractionDigits})+"</p>"+
                     "<p><b>Market Cap:</b> $"+coin.mktcap.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})+"</p>"+
-                    "<p><b>All time high:</b> $"+coin.ath.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})+"</p>"+
+                    "<p><b>All time high:</b> $"+coin.ath.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: fractionDigits})+"</p>"+
                     "<p><b>24H Volume:</b> $"+coin.volume.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})+"</p>"+
                     "<p><b>Rank:</b> "+coin.rank+"</p>"+
                     "<p><b>Supply:</b> "+coin.supply.toLocaleString()+"</p>"+
