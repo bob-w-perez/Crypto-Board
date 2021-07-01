@@ -71,6 +71,8 @@ function genCoinCard(coin, coinIcon){
     //------ chart addition ----//
     // this may cause issues when deleting chart from page, but not sure...
     chartCount++;
+    console.log(chartCount);
+    
     var chartTargetId = 'chart-target' + chartCount;
     // ------- end chart addition ------//
  
@@ -397,11 +399,8 @@ var endPointDateData = {
 
 $(document).on('click','.close-button',function() {
     $(this).closest("div.card").remove();
-    // console.log(this.dataset.name)
-    console.log(activeCoins)
     activeCoins.splice(activeCoins.indexOf(this.dataset.name),1);
     storeActiveCoins(activeCoins);
-    console.log(activeCoins)
 
 });
 // ------- END close button listener-------- //

@@ -18,13 +18,28 @@ main {
 .sidenav-trigger {
     color: black;
     font-weight: 700;
+    display: inline;
 }
 #term-glossary {
     padding-left: 20px;
 }
 
+#term-icon {
+    font-size: 40px;
+    padding: 15px;
+}
+
+#term-icon-2 {
+    position: relative;
+    top: 6px;
+    padding: 20px 10px 10px 0px;
+    display: inline;
+}
+
 #term-glossary li {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 #term-glossary li div {
@@ -34,6 +49,13 @@ main {
 #term-glossary li div:first-child {
     font-weight: bold;
     font-size: 20px;
+}
+
+#term-glossary li div:nth-child(2) {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: rgb(243, 243, 243);
 }
 
 #form-wrapper {
