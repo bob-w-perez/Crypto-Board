@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Croissant+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
 
 body {
     display: grid;
@@ -9,6 +9,8 @@ body {
         'header'
         'main'
         'footer';
+    font-family: 'Inter';
+    background-color: #D4AF37;
 }
 
 header {
@@ -21,8 +23,20 @@ main {
 }
 
 
+.nav-wrapper {
+    background-color:#D4AF37;
+}
+
+#logo {
+    position: absolute;
+    left: 50%;
+    transform:translateX(-50%) !important;  /* 50% of your logo width */
+    display: block;
+}
+
 footer {
     grid-area: 'footer';
+    background-color: #2b50c8;
 }
 
 /* this isnt working to fit image in sidenav*/
@@ -99,7 +113,7 @@ footer {
 }
 
 #hero {
-    background-color: #2b50c8;
+
 }
 
 #main-row {
@@ -108,7 +122,6 @@ footer {
 }
 
 .tweet-shown {
-
     grid-template-columns: 1fr 3fr;
     grid-template-areas: 'tweet card';
 }
@@ -132,8 +145,24 @@ footer {
     min-height: 500px;
     max-height: 100vh;
     min-width: 300px;
-    overflow: scroll;
+    overflow-y: scroll;
     grid-area: 'tweet';
+    background-color: #D4AF37;
+}
+
+#tweet-bar::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+#tweet-bar::-webkit-scrollbar-thumb {
+  /* background-color: #26aa9d; */
+  background-color: #A91B0D;
+  outline: 1px solid #D4AF37;
+}
+
+#tweet-bar::-webkit-scrollbar-corner {
+    background-color: #D4AF37;
+    outline: 1px solid slategrey;
 }
 
 .hidden{
@@ -145,8 +174,12 @@ footer {
     display: flex;
     flex-wrap: wrap;
     grid-area: 'card';
+    background-color: #2b50c8;
 }
 
+#card-bottom {
+    background-color: #D4AF37;
+}
 
 .coin-icon {
     width: 100px;
@@ -178,6 +211,7 @@ canvas {
 
 }
 
+<<<<<<< HEAD
 .chart-error {
     height: 175px;
     text-align: center;
@@ -187,6 +221,8 @@ canvas {
     margin: 0;
 }
 
+=======
+>>>>>>> fb2fbcf1a7eefd4130f39c99a668d31cfd7cc0ca
 #copyright-bar{
     display: flex;
     padding: 0 20px;
