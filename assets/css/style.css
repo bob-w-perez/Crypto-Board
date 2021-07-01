@@ -9,7 +9,6 @@ body {
         'header'
         'main'
         'footer';
-    background-color: #D4AF37;
 }
 
 header {
@@ -28,8 +27,20 @@ main {
     height: 10hv;
 }
 
+.nav-wrapper {
+    background-color:#D4AF37;
+}
+
+#logo {
+    position: absolute;
+    left: 50%;
+    transform:translateX(-50%) !important;  /* 50% of your logo width */
+    display: block;
+}
+
 footer {
     grid-area: 'footer';
+    background-color: #2b50c8;
 }
 
 /* this isnt working to fit image in sidenav*/
@@ -143,10 +154,6 @@ footer {
     width: 1em;
 }
  
-#tweet-bar::-webkit-scrollbar-track {
-    
-}
- 
 #tweet-bar::-webkit-scrollbar-thumb {
   background-color: #26aa9d;
   outline: 1px solid #D4AF37;
@@ -199,7 +206,6 @@ canvas {
     margin: 0 auto;
 
 }
-
 
 #copyright-bar{
     display: flex;
