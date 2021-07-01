@@ -83,6 +83,10 @@ footer {
     color: white;
 }
 
+#input-label {
+    color: white;
+}
+
 #autocomplete-input{
     width: 30vw;
     margin-right: 50px;
