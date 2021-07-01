@@ -136,13 +136,6 @@ function retrieveActiveCoins() {
 
 //------------- END Local Storage -----------//
 
-searchFormEl.addEventListener("submit", function(event){
-    // console.log('activated')
-    event.preventDefault();
-    var newCoin = queryEl.value.toLowerCase();
-    addNewCoin(newCoin);
-    queryEl.value = '';
-})
 
 
 function addNewCoin(newCoin) {
@@ -289,28 +282,6 @@ function makeChart(price, day, coinName, chartId){
 // ------- END Chart data and Make chart ----------- //
 
 
-// ------- jQuery initializations for Materialize components ---------- //
-
-// M.AutoInit();
-
-$(document).ready(function(){
-    $('.sidenav').sidenav({
-        menuWidth: 300,
-        closeOnClick: true,
-        // edge: 'right',
-    });
-  });
-
-
-$(document).ready(function(){
-$('input.autocomplete').autocomplete({
-   data,
-});
-});
-
-$(document).ready(function(){
-    $('.collapsible').collapsible();
-  });
 
 // -------------------------------------------------- TWITTER CARD ------------------------------------------------ //
 
@@ -390,35 +361,7 @@ var endPointDateData = {
     }
 }
 
-// ------- END jQuery initializations ---------- //     
-// ------- close button AND Twitter button  event listener  ---------- //     
 
-$(document).on('click','.close-button',function() {
-    $(this).closest("div.card").remove();
-    activeCoins.splice(activeCoins.indexOf(this.dataset.name),1);
-    storeActiveCoins(activeCoins);
-
-});
-
-$(document).on('click','.tweet-button',function() {
-    // $(this).closest("div.card").remove();
-    // activeCoins.splice(activeCoins.indexOf(this.dataset.name),1);
-    // storeActiveCoins(activeCoins);
-    if (document.getElementById('tweet-bar').classList.contains('hidden')) {
-        console.log('TEST')
-        $('#tweet-bar').removeClass('hidden');
-        $('#main-row').addClass('tweet-shown');
-    } else if(!document.getElementById('tweet-bar').classList.contains('hidden')) {
-        $('#tweet-bar').addClass('hidden');
-        $('#main-row').removeClass('tweet-shown');
-    }
-
-
-
-});
-
-
-// ------- END close button listener-------- //
 // ------- Twitter Feed Fetch -------- //
 
 // ENDPOINT DATA OBJECT
@@ -475,7 +418,41 @@ function getDates() {
     return days; // Returns joined dates array
 }
 
+// ------- jQuery initializations for Materialize components ---------- //
+
+// M.AutoInit();
+
+$(document).ready(function(){
+    $('.sidenav').sidenav({
+        menuWidth: 300,
+        closeOnClick: true,
+        // edge: 'right',
+    });
+  });
+
+
+$(document).ready(function(){
+$('input.autocomplete').autocomplete({
+   data,
+});
+});
+
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+
+// ------- END jQuery initializations ---------- // 
 //Add Event listener for twitterFetch function
+
+
+searchFormEl.addEventListener("submit", function(event){
+    // console.log('activated')
+    event.preventDefault();
+    var newCoin = queryEl.value.toLowerCase();
+    addNewCoin(newCoin);
+    queryEl.value = '';
+})
+
 
 document.addEventListener('scroll', function() {
     if ($(window).width() > 700){
@@ -488,3 +465,33 @@ document.addEventListener('scroll', function() {
         }
     }
 });
+
+    
+// ------- close button AND Twitter button  event listener  ---------- //     
+
+$(document).on('click','.close-button',function() {
+    $(this).closest("div.card").remove();
+    activeCoins.splice(activeCoins.indexOf(this.dataset.name),1);
+    storeActiveCoins(activeCoins);
+
+});
+
+$(document).on('click','.tweet-button',function() {
+    // $(this).closest("div.card").remove();
+    // activeCoins.splice(activeCoins.indexOf(this.dataset.name),1);
+    // storeActiveCoins(activeCoins);
+    if (document.getElementById('tweet-bar').classList.contains('hidden')) {
+        console.log('TEST')
+        $('#tweet-bar').removeClass('hidden');
+        $('#main-row').addClass('tweet-shown');
+    } else if(!document.getElementById('tweet-bar').classList.contains('hidden')) {
+        $('#tweet-bar').addClass('hidden');
+        $('#main-row').removeClass('tweet-shown');
+    }
+
+
+
+});
+
+
+// ------- END close button listener-------- //
