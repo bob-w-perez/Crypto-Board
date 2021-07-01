@@ -157,7 +157,8 @@ footer {
 }
  
 #tweet-bar::-webkit-scrollbar-thumb {
-  background-color: #26aa9d;
+  /* background-color: #26aa9d; */
+  background-color: #A91B0D;
   outline: 1px solid #D4AF37;
 }
 
@@ -178,6 +179,9 @@ footer {
     background-color: #2b50c8;
 }
 
+#card-bottom {
+    background-color: #D4AF37;
+}
 
 .coin-icon {
     width: 100px;
