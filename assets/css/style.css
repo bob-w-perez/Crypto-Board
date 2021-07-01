@@ -239,6 +239,11 @@ canvas {
     justify-content: space-between;
 }
 
+#copyright-bar a{
+    color: white;
+    font-size: large;
+}
+
 /* --- Ticker Scroll --- */
 * { box-sizing: border-box; }
 /* $duration: 30s; */
