@@ -365,16 +365,19 @@ var endPointDateData = {
 // ------- Twitter Feed Fetch -------- //
 
 // ENDPOINT DATA OBJECT
-var endPointData = {
-    hashtag: 'doge',
-    startDate: endPointDateData.startData.startYear + "-" + endPointDateData.startData.startMonth + "-" + endPointDateData.startData.startDay,
-    endDate: endPointDateData.endData.endYear + "-" + endPointDateData.endData.endMonth + "-" + endPointDateData.endData.endDay
-}
-
-var endPoint = "/getSearch?" + "hashtag=" + endPointData.hashtag + "&start_date=" + endPointData.startDate + "&end_date=" + endPointData.endDate;
+var currentHashtag;
 
 // TWEET FETCHER
-function twitterfetch() {
+function twitterfetch(cardHashtag) {
+
+    var endPointData = {
+        hashtag: cardHashtag,
+        startDate: endPointDateData.startData.startYear + "-" + endPointDateData.startData.startMonth + "-" + endPointDateData.startData.startDay,
+        endDate: endPointDateData.endData.endYear + "-" + endPointDateData.endData.endMonth + "-" + endPointDateData.endData.endDay
+    }
+    
+    var endPoint = "/getSearch?" + "hashtag=" + endPointData.hashtag + "&start_date=" + endPointData.startDate + "&end_date=" + endPointData.endDate;
+
     fetch("https://twitter32.p.rapidapi.com" + endPoint, {
     method: "GET",
     "headers": {
@@ -387,7 +390,7 @@ function twitterfetch() {
     })
     .then(data => {
         var tweetData = data.data.tweets;
-        console.log(data.data.tweets);
+        // console.log(data.data.tweets);
 
         Object.keys(tweetData).forEach(key => {
             tweetDataContainer.push(tweetData[key]);
@@ -398,7 +401,7 @@ function twitterfetch() {
     })
 }
 
-twitterfetch();
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Generate Start/End Dates for Twitter URL ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
 // DATE GENERATOR
@@ -477,16 +480,28 @@ $(document).on('click','.close-button',function() {
 });
 
 $(document).on('click','.tweet-button',function() {
-    // $(this).closest("div.card").remove();
-    // activeCoins.splice(activeCoins.indexOf(this.dataset.name),1);
-    // storeActiveCoins(activeCoins);
+
     if (document.getElementById('tweet-bar').classList.contains('hidden')) {
-        console.log('TEST')
         $('#tweet-bar').removeClass('hidden');
         $('#main-row').addClass('tweet-shown');
-    } else if(!document.getElementById('tweet-bar').classList.contains('hidden')) {
+        // $('#tweet-bar').empty();
+        twitterfetch(this.dataset.name);
+        currentHashtag = this.dataset.name;
+        console.log(currentHashtag)
+        console.log(tweetDataContainer)
+    } else if(!document.getElementById('tweet-bar').classList.contains('hidden') && currentHashtag == this.dataset.name) {
+        console.log(currentHashtag)
         $('#tweet-bar').addClass('hidden');
         $('#main-row').removeClass('tweet-shown');
+        // $('#tweet-bar').empty();
+    } else {
+        $('#tweet-bar').html('');
+        console.log('Tweet data' +tweetDataContainer)
+        tweetDataContainer = [];
+        console.log('tweet data after' +tweetDataContainer)
+        twitterfetch(this.dataset.name);
+        currentHashtag = this.dataset.name;
+
     }
 
 
