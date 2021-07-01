@@ -239,11 +239,20 @@ canvas {
     margin: 0;
 }
 
+.chart-backround{
+    background-color: '#e8eaf6';
+}
+
 #copyright-bar{
     display: flex;
     padding: 0 20px;
     width: 100vw;
     justify-content: space-between;
+}
+
+#copyright-bar a{
+    color: white;
+    font-size: large;
 }
 
 /* --- Ticker Scroll --- */

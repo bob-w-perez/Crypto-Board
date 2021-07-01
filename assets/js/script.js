@@ -420,7 +420,7 @@ function twitterfetch(cardHashtag) {
     fetch("https://twitter32.p.rapidapi.com" + endPoint, {
     method: "GET",
     "headers": {
-        "x-rapidapi-key": "9ce9da8239mshfdc240a5706e6dbp1a372ajsnf408cd27ddc9",
+        "x-rapidapi-key": "9610a05b5amshd976184d69c9411p1b38bdjsn299a5e3639b6",
 		"x-rapidapi-host": "twitter32.p.rapidapi.com"
     }
 })
