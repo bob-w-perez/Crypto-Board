@@ -18,13 +18,6 @@ main {
     grid-area: 'main';
 }
 
-.hero{
-    height: 25vh;
-}
-.sub-hero{
-    height: 10hv;
-}
-
 footer {
     grid-area: 'footer';
 }
