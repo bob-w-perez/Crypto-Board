@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Croissant+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 body {
     display: grid;
@@ -46,7 +46,7 @@ footer {
 
 .sidenav-trigger {
     color: black;
-    font-weight: 700;
+    font-weight: 700 ;
     display: inline !important;
 }
 #term-glossary {
@@ -197,6 +197,10 @@ footer {
     padding-top: 10px;
 }
 
+.close-button {
+    margin-left: auto;
+}
+
 canvas {
     width: 100%;
     height: 100%;
@@ -211,7 +215,6 @@ canvas {
 
 }
 
-<<<<<<< HEAD
 .chart-error {
     height: 175px;
     text-align: center;
@@ -221,8 +224,6 @@ canvas {
     margin: 0;
 }
 
-=======
->>>>>>> fb2fbcf1a7eefd4130f39c99a668d31cfd7cc0ca
 #copyright-bar{
     display: flex;
     padding: 0 20px;
@@ -254,7 +255,7 @@ canvas {
         position: sticky;
         bottom: -60vh;
         z-index: 5;
-        border-top: 9px solid darkgray;
+        border-top: 9px solid #b51b10;
     }
 
 }
