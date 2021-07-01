@@ -501,11 +501,13 @@ $(document).on('click','.close-button',function() {
 
 $(document).on('click','.tweet-button',function() {
 
-    
+    //hidden and current coin
     if (document.getElementById('tweet-bar').classList.contains('hidden') && currentHashtag == this.dataset.name){
         $('#tweet-bar').removeClass('hidden');
         $('#main-row').addClass('tweet-shown');
+        
     }
+    //hidden and new coin
     else if (document.getElementById('tweet-bar').classList.contains('hidden')) {
         $('#tweet-bar').html('');
         tweetDataContainer = [];
@@ -515,11 +517,15 @@ $(document).on('click','.tweet-button',function() {
         // $('#tweet-bar').empty();
         twitterfetch(this.dataset.name);
         currentHashtag = this.dataset.name;
-    } else if(!document.getElementById('tweet-bar').classList.contains('hidden') && currentHashtag == this.dataset.name) {
+    } 
+    //visible and current coin
+    else if(!document.getElementById('tweet-bar').classList.contains('hidden') && currentHashtag == this.dataset.name) {
         $('#tweet-bar').addClass('hidden');
         $('#main-row').removeClass('tweet-shown');
         // $('#tweet-bar').empty();
-    } else {
+    } 
+    //visible and new coin
+    else {
         $('#tweet-bar').html('');
         tweetDataContainer = [];
         matTwitBlock = ""
