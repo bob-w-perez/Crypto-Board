@@ -71,6 +71,7 @@ function genCoinCard(coin, coinIcon){
     //------ chart addition ----//
     // this may cause issues when deleting chart from page, but not sure...
     chartCount++;
+    
     var chartTargetId = 'chart-target' + chartCount;
     // ------- end chart addition ------//
  
@@ -88,13 +89,13 @@ function genCoinCard(coin, coinIcon){
                     "<p><b>24H Volume:</b> $"+coin.volume.toLocaleString('en-US', {minimumFractionDigits: 2})+"</p>"+
                     "<p><b>Rank:</b> "+coin.rank+"</p>"+
                     "<p><b>Supply:</b> "+coin.supply.toLocaleString()+"</p>"+
-                    '<div class="card-buttons"><a class="waves-effect waves-light btn-small"><i class="material-icons right">chat</i>Twitter Feed</a><a data-name='+ coin.name +' class="close-button waves-effect waves-light btn-small">Close</a>';
+                    '<div class="card-buttons"><a data-name='+ coin.name +' class="tweet-button waves-effect waves-light btn-small"><i class="material-icons right">chat</i>Twitter Feed</a><a data-name='+ coin.name +' class="close-button waves-effect waves-light btn-small">Close</a>';
 
     var newCoin = document.createElement('div');
     newCoin.classList.add('coin-card')
     newCoin.innerHTML = "<div class=\"card\"><div class=\"card-image\"><div id="+ chartTargetId +"></div><a class=\"btn-floating btn-large halfway-fab waves-effect waves-light white\"><img src="+ coinIcon+ "></a></div><div class=\"card-content amber lighten-3\"><p>"+coinString+"</p></div></div>";
 
-    coinsArea.appendChild(newCoin);
+    $(coinsArea).prepend(newCoin);
 
     //------ chart addition ----//
     var chartWrapper = document.createElement('div');
@@ -127,7 +128,6 @@ function retrieveActiveCoins() {
     if (storedCoins){
         storedCoins.forEach(coin => {
             var newCoin = coin.toLowerCase();
-            console.log(newCoin)
 
             addNewCoin(newCoin);
         })
@@ -136,14 +136,6 @@ function retrieveActiveCoins() {
 
 //------------- END Local Storage -----------//
 
-searchFormEl.addEventListener("submit", function(event){
-    // console.log('activated')
-    event.preventDefault();
-    var newCoin = queryEl.value.toLowerCase();
-    console.log(newCoin)
-    addNewCoin(newCoin);
-    queryEl.value = '';
-})
 
 
 function addNewCoin(newCoin) {
@@ -177,7 +169,6 @@ function addNewCoin(newCoin) {
                     
                     
                     activeCoins.push(coin.name);
-                    console.log(activeCoins);
                     storeActiveCoins(activeCoins);
                     getCoinIconData(coins[i].name.toLowerCase(), coin)
                     // genCoinCard(coin);
@@ -291,28 +282,6 @@ function makeChart(price, day, coinName, chartId){
 // ------- END Chart data and Make chart ----------- //
 
 
-// ------- jQuery initializations for Materialize components ---------- //
-
-// M.AutoInit();
-
-$(document).ready(function(){
-    $('.sidenav').sidenav({
-        menuWidth: 300,
-        closeOnClick: true,
-        // edge: 'right',
-    });
-  });
-
-
-$(document).ready(function(){
-$('input.autocomplete').autocomplete({
-   data,
-});
-});
-
-$(document).ready(function(){
-    $('.collapsible').collapsible();
-  });
 
 // -------------------------------------------------- TWITTER CARD ------------------------------------------------ //
 
@@ -392,32 +361,23 @@ var endPointDateData = {
     }
 }
 
-// ------- END jQuery initializations ---------- //     
-// ------- close button event listener  ---------- //     
 
-$(document).on('click','.close-button',function() {
-    $(this).closest("div.card").remove();
-    // console.log(this.dataset.name)
-    console.log(activeCoins)
-    activeCoins.splice(activeCoins.indexOf(this.dataset.name),1);
-    storeActiveCoins(activeCoins);
-    console.log(activeCoins)
-
-});
-// ------- END close button listener-------- //
 // ------- Twitter Feed Fetch -------- //
 
 // ENDPOINT DATA OBJECT
-var endPointData = {
-    hashtag: 'doge',
-    startDate: endPointDateData.startData.startYear + "-" + endPointDateData.startData.startMonth + "-" + endPointDateData.startData.startDay,
-    endDate: endPointDateData.endData.endYear + "-" + endPointDateData.endData.endMonth + "-" + endPointDateData.endData.endDay
-}
-
-var endPoint = "/getSearch?" + "hashtag=" + endPointData.hashtag + "&start_date=" + endPointData.startDate + "&end_date=" + endPointData.endDate;
+var currentHashtag;
 
 // TWEET FETCHER
-function twitterfetch() {
+function twitterfetch(cardHashtag) {
+
+    var endPointData = {
+        hashtag: cardHashtag,
+        startDate: endPointDateData.startData.startYear + "-" + endPointDateData.startData.startMonth + "-" + endPointDateData.startData.startDay,
+        endDate: endPointDateData.endData.endYear + "-" + endPointDateData.endData.endMonth + "-" + endPointDateData.endData.endDay
+    }
+    
+    var endPoint = "/getSearch?" + "hashtag=" + endPointData.hashtag + "&start_date=" + endPointData.startDate + "&end_date=" + endPointData.endDate;
+
     fetch("https://twitter32.p.rapidapi.com" + endPoint, {
     method: "GET",
     "headers": {
@@ -430,7 +390,7 @@ function twitterfetch() {
     })
     .then(data => {
         var tweetData = data.data.tweets;
-        console.log(data.data.tweets);
+        // console.log(data.data.tweets);
 
         Object.keys(tweetData).forEach(key => {
             tweetDataContainer.push(tweetData[key]);
@@ -441,7 +401,7 @@ function twitterfetch() {
     })
 }
 
-twitterfetch();
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Generate Start/End Dates for Twitter URL ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
 // DATE GENERATOR
@@ -461,14 +421,97 @@ function getDates() {
     return days; // Returns joined dates array
 }
 
+// ------- jQuery initializations for Materialize components ---------- //
+
+// M.AutoInit();
+
+$(document).ready(function(){
+    $('.sidenav').sidenav({
+        menuWidth: 300,
+        closeOnClick: true,
+        // edge: 'right',
+    });
+  });
+
+
+$(document).ready(function(){
+$('input.autocomplete').autocomplete({
+   data,
+});
+});
+
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+
+// ------- END jQuery initializations ---------- // 
 //Add Event listener for twitterFetch function
 
+
+searchFormEl.addEventListener("submit", function(event){
+    // console.log('activated')
+    event.preventDefault();
+    var newCoin = queryEl.value.toLowerCase();
+    addNewCoin(newCoin);
+    queryEl.value = '';
+})
+
+
 document.addEventListener('scroll', function() {
-    if($(window).scrollTop()>$('#card-space').offset().top){
-        height = $('footer').offset().top - window.scrollY;
-        twit.style.cssText = 'position: fixed; top: 0; height: '+height+'px;';
-    } 
-    else {
-        twit.style.cssText ='';
+    if ($(window).width() > 700){
+        if($(window).scrollTop()>$('#card-space').offset().top){
+            height = $('footer').offset().top - window.scrollY;
+            twit.style.cssText = 'position: sticky; top: 0; height: '+height+'px;';
+        } 
+        else {
+            twit.style.cssText ='';
+        }
     }
 });
+
+    
+// ------- close button AND Twitter button  event listener  ---------- //     
+
+$(document).on('click','.close-button',function() {
+    $(this).closest("div.card").remove();
+    activeCoins.splice(activeCoins.indexOf(this.dataset.name),1);
+    storeActiveCoins(activeCoins);
+
+});
+
+$(document).on('click','.tweet-button',function() {
+
+    
+    if (document.getElementById('tweet-bar').classList.contains('hidden') && currentHashtag == this.dataset.name){
+        $('#tweet-bar').removeClass('hidden');
+        $('#main-row').addClass('tweet-shown');
+    }
+    else if (document.getElementById('tweet-bar').classList.contains('hidden')) {
+        $('#tweet-bar').html('');
+        tweetDataContainer = [];
+        matTwitBlock = ""
+        $('#tweet-bar').removeClass('hidden');
+        $('#main-row').addClass('tweet-shown');
+        // $('#tweet-bar').empty();
+        twitterfetch(this.dataset.name);
+        currentHashtag = this.dataset.name;
+    } else if(!document.getElementById('tweet-bar').classList.contains('hidden') && currentHashtag == this.dataset.name) {
+        $('#tweet-bar').addClass('hidden');
+        $('#main-row').removeClass('tweet-shown');
+        // $('#tweet-bar').empty();
+    } else {
+        $('#tweet-bar').html('');
+        tweetDataContainer = [];
+        matTwitBlock = ""
+        currentHashtag = this.dataset.name;
+        twitterfetch(this.dataset.name);
+       
+
+    }
+
+
+
+});
+
+
+// ------- END close button listener-------- //
