@@ -481,26 +481,31 @@ $(document).on('click','.close-button',function() {
 
 $(document).on('click','.tweet-button',function() {
 
-    if (document.getElementById('tweet-bar').classList.contains('hidden')) {
+    
+    if (document.getElementById('tweet-bar').classList.contains('hidden') && currentHashtag == this.dataset.name){
+        $('#tweet-bar').removeClass('hidden');
+        $('#main-row').addClass('tweet-shown');
+    }
+    else if (document.getElementById('tweet-bar').classList.contains('hidden')) {
+        $('#tweet-bar').html('');
+        tweetDataContainer = [];
+        matTwitBlock = ""
         $('#tweet-bar').removeClass('hidden');
         $('#main-row').addClass('tweet-shown');
         // $('#tweet-bar').empty();
         twitterfetch(this.dataset.name);
         currentHashtag = this.dataset.name;
-        console.log(currentHashtag)
-        console.log(tweetDataContainer)
     } else if(!document.getElementById('tweet-bar').classList.contains('hidden') && currentHashtag == this.dataset.name) {
-        console.log(currentHashtag)
         $('#tweet-bar').addClass('hidden');
         $('#main-row').removeClass('tweet-shown');
         // $('#tweet-bar').empty();
     } else {
         $('#tweet-bar').html('');
-        console.log('Tweet data' +tweetDataContainer)
         tweetDataContainer = [];
-        console.log('tweet data after' +tweetDataContainer)
-        twitterfetch(this.dataset.name);
+        matTwitBlock = ""
         currentHashtag = this.dataset.name;
+        twitterfetch(this.dataset.name);
+       
 
     }
 
