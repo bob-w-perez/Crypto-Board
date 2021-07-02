@@ -45,7 +45,6 @@ function makeTermGlossary() {
     fetch('https://api.coinpaprika.com/v1/tags').then(function(response) {
         return response.json();
     }).then(function(info) {
-        console.log(info);
         info.sort((a, b) => (a.name > b.name) ? 1 : -1)
         info.forEach(term => {
             let termItem = document.createElement('li');
@@ -184,8 +183,7 @@ function addNewCoin(newCoin) {
 
         
 
-        // return coin;
-        // console.log(coin); 
+
         
         
     }
@@ -207,12 +205,10 @@ function getCoinIconData(coinName, coin) {
     } else if (coinName == 'theta') {
         coinName = 'theta-token';
     }
-    console.log(coinName)
 
     fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=' + coinName).then(function(response) {
         return response.json();
     }).then(function(info) {
-        console.log(info)
         if (info.length == 0) {
             coinIcon = './assets/images/default-coin.png';
             genCoinCard(coin, coinIcon, coinName);
@@ -369,9 +365,6 @@ function generateTwitCard() {
         tweetBar.innerHTML += matTwitBlock;
 }
 
-// console.log(tweetBar.innerHTML);
-// console.log(tweetDataContainer);
-// console.log(tweetDataContainer[0]);
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Twitter API Fetcher ~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 
@@ -429,11 +422,9 @@ function twitterfetch(cardHashtag) {
     })
     .then(data => {
         var tweetData = data.data.tweets;
-        // console.log(data.data.tweets);
 
         Object.keys(tweetData).forEach(key => {
             tweetDataContainer.push(tweetData[key]);
-            // console.log(tweetDataContainer[0]);
         });
         //if button clicked display Tweet
         generateTwitCard();
@@ -488,7 +479,6 @@ $(document).ready(function(){
 
 
 searchFormEl.addEventListener("submit", function(event){
-    // console.log('activated')
     event.preventDefault();
     var newCoin = queryEl.value.toLowerCase();
     if (newCoin == 'ripple') {
@@ -560,5 +550,12 @@ $(document).on('click','.tweet-button',function() {
 
 });
 
+
+$('#tweet-bar').on('click', function() {
+    if (!document.getElementById('tweet-bar').classList.contains('hidden')) {
+        $('#tweet-bar').addClass('hidden');
+        $('#main-row').removeClass('tweet-shown');
+    }
+})
 
 // ------- END close button listener-------- //
