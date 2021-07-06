@@ -8,7 +8,7 @@ Created by Robert Perez, Brooks Gunn, and David Ludwik
 
 Welcome to CoinBASED, your one stop shop for the latest cryptocurrency data on your favorite coins!
 
-Simply enter the coin of interest in the search bar and a card containing relevant trading data, including 30 day price history chart, pops up in the card area. Hover over the chart to get more precise data on the coin's price history. Each card's twitter button pulls up a bar on the left containing a selection of recent tweets about the relevant coin. Close the card at any time to stay focused on your favorite coins. Upon reopening the page, all previous coins are retained. 
+Simply enter the a currency of interest in the search bar and a card containing relevant trading data, including 30 day price history chart, displays in the card area. Each card's 'Twitter Feed' button pulls up a bar on the left containing a selection of recent tweets about the currency. Close a card at any time to stay focused on your favorite currency. Upon reopening the page, all previous currency cards are retained. 
 
 
 
