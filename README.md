@@ -1,4 +1,4 @@
-# project-1_RDB
+# Crypto CARDS
 Project 1 for GT Bootcamp
 
 Created by Robert Perez, Brooks Gunn, and David Ludwik
@@ -6,10 +6,7 @@ Created by Robert Perez, Brooks Gunn, and David Ludwik
 
 
 
-Welcome to CoinBASED, your one stop shop for the latest cryptocurrency data on your favorite coins!
-
-Simply enter the a currency of interest in the search bar and a card containing relevant trading data, including 30 day price history chart, displays in the card area. Each card's 'Twitter Feed' button pulls up a bar on the left containing a selection of recent tweets about the currency. Close a card at any time to stay focused on your favorite currency. Upon reopening the page, all previous currency cards are retained. 
-
+Entering the name of a currency in the search bar creates an information card containing up-to-date statistics of that assets, including a 30-day price history chart, which is then added to the card display area. The user can add as many cards as they desire and remove them just as easily to curate their ideal array of token information.  The user's card layout is saved whenever a change is made so, upon returning to the application at a later time, their selected cryptocurrencies are automatically displayed and they can stay informed of any changes to the assets they are watching. Each card's 'Twitter Feed' button pulls up a bar on the left containing a selection of recent, relevant tweets from Twitter's API. Additional features include a scrolling ticker of CoinGecko's Top Trending Coins to present the user with new potential currencies to explore, and a glossary of crypto-related terms to assist the user as they explore various assets in the crypto space.
 
 
 Check it out yourself!
