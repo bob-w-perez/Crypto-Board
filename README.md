@@ -49,7 +49,7 @@ Contact info for Rob:
 ## License
 MIT License
 
-Copyright (c) 2021 Robert Perez
+Copyright (c) 2021 Robert Perez, Brooks Gunn, and David Ludwik
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
