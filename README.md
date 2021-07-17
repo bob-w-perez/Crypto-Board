@@ -39,11 +39,11 @@ The code and all relevant files can be found at [https://github.com/bob-w-perez/
 
 ## Contributing
 Group project for GATech Coding Bootcamp
-by Rob Perez, Brooks Gunn, and David Ludwik
+by Rob Perez, [Brooks Gunn](https://github.com/WorldUnfurled), and [David Ludwik](https://github.com/davidludwik2370)
 
 Contact info for Rob:
-- [Portfolio Page]https://bob-w-perez.github.io/Portfolio-Page/)
-- bob.w.perez@gmail.com
+- [Portfolio Page](https://www.robperez.net)
+- rob@robperez.net
 - 404.317.5336
 
 ## License
